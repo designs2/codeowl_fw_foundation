@@ -1,6 +1,6 @@
 #Codeowl Framework Foundation
 
-Version 1.0.0 - RC1
+Version 1.1.0
 
 ##Requirements
 
@@ -8,8 +8,8 @@ Version 1.0.0 - RC1
 
 ##Documentation & Introduction
 
-  http://www.foundation-to-contao.de
-  http://codeowl.org
+  http://www.foundation-to-contao.de  
+  http://www.designs2.de/contao-erweiterungen/codeowl.html  
   
 ##Tutorials 
 
