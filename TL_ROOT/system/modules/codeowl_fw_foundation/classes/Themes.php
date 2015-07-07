@@ -22,11 +22,10 @@ class Themes extends \Backend
 		
 	public function generate($dc) 
 	{
-		$Rel 			= 'id';
-		$SettingsModel 	= new FoundationSettingsModel;
-		$SettingsArr    = $SettingsModel->getSettings($Rel,$_GET['id']);
+		
+		$SettingsArr    = $dc->__get('activeRecord')->row();
 		$folder_url 	= $SettingsArr['theme_folder'];
-		$savePath 		= TL_ROOT.'/'.$folder_url ;
+		$savePath 		= TL_ROOT.'/'.$folder_url;
 		$settingsFile   = '_settings.scss';
 		$componentsFile = str_replace(' ', '-',strtolower($SettingsArr['name'])).'.scss';
 		$content 		= '';

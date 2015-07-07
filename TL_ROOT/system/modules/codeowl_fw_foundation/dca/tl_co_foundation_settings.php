@@ -23,7 +23,7 @@ $GLOBALS['TL_DCA']['tl_co_foundation_settings'] = array
 		'enableVersioning'            => true,
 		'Vwidth'            => 640,
 		'Vheight'            => 480,
-		'onversion_callback' => array(  
+		'onsubmit_callback' => array(  
 		array('Codeowl\Themes', 'generate')
 		),
 
