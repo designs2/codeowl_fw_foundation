@@ -39,8 +39,8 @@
             "sources":{
                 "TL_ROOT/system/modules/codeowl_fw_foundation": "system/modules/codeowl_fw_foundation"
             },
-         "userfiles": {
-            "TL_ROOT/files/themes": "themes"
+         "files": {
+            "codeowl_fw_foundation/files/themes": "themes"
         },
         "branch-alias": {
         			"dev-master": "1.0.0"
