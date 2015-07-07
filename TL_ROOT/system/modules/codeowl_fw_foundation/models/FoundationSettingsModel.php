@@ -40,6 +40,17 @@ class FoundationSettingsModel extends \Model
         return $ColsMax;
         }
     }
+
+    public function getSettings($Rel,$Val) 
+    {   
+        $objModel = new FoundationSettingsModel;
+        $objModel = $objModel::findBy($Rel,$Val);
+        $arrData = array();
+        if (NULL!=$objModel) {
+           $arrData = $objModel->arrData;
+        }
+        return $arrData; 
+    } 
     
 }
 

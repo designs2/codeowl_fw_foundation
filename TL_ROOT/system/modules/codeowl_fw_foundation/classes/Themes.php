@@ -19,25 +19,23 @@ namespace Codeowl;
 class Themes extends \Backend
 {
 
-	
-	protected $model = 'FoundationSettingsModel';
-	
-	
+		
 	public function generate($dc) 
 	{
 		$Rel 			= 'id';
-		$SettingsArr    = $this->getSettings($this->model,$Rel,$_GET['id']);
-		$folder_url 	= $SettingsArr[0]['theme_folder'];
+		$SettingsModel 	= new FoundationSettingsModel;
+		$SettingsArr    = $SettingsModel->getSettings($Rel,$_GET['id']);
+		$folder_url 	= $SettingsArr['theme_folder'];
 		$savePath 		= TL_ROOT.'/'.$folder_url ;
 		$settingsFile   = '_settings.scss';
-		$componentsFile = str_replace(' ', '-',strtolower($SettingsArr[0]['name'])).'.scss';
+		$componentsFile = str_replace(' ', '-',strtolower($SettingsArr['name'])).'.scss';
 		$content 		= '';
 		$config 		= '';
 	
 		if (!file_exists($savePath)){
 			mkdir($savePath);
 		}
-	
+
 		$content 	   .= '// Contao Open Source CMS, (c) 2014 Monique Hahnefeld, LGPL license'."\r\n\r\n\t".'@import "../foundation/scss/foundation/functions";'."\r\n";
 		$config 	   .= '
 		// Foundation by ZURB
@@ -61,7 +59,7 @@ class Themes extends \Backend
 		$componentsHandle   = fopen($savePath."/".$componentsFile, "w+");
 		$countComponents    = 0;
 		$ScssVariablenArr	= \Config::get('co_foundation_vars');
-		foreach ($SettingsArr[0] as $key => $value) {
+		foreach ($SettingsArr as $key => $value) {
 			if (isset($ScssVariablenArr[$key]['var_scss'])) {
 			
 				$content 	 .= $ScssVariablenArr[$key]['var_scss'].':';	
@@ -75,9 +73,9 @@ class Themes extends \Backend
 				$content 	 .= ' ;'."\r\n";	
 			}
 
-			if (array_key_exists($key.'_vars', $SettingsArr[0])&&$value == '1') {
+			if (array_key_exists($key.'_vars', $SettingsArr)&&$value == '1') {
 
-				$content 	 .= ''.html_entity_decode($SettingsArr[0][$key.'_vars'])."\r\n";
+				$content 	 .= ''.html_entity_decode($SettingsArr[$key.'_vars'])."\r\n";
 				if ($key == 'global' || $key == 'typografie'){continue;}	
 				if ($countComponents!==0) {
 					$config  .= "\t".',';	
@@ -99,12 +97,6 @@ class Themes extends \Backend
 
 
 	}
-	
-	public function getSettings($model,$Rel,$Val) 
-	{	
-		$objModel = $model::findBy($Rel,$Val)->fetchAll();
-	 	return $objModel; 
-	} 
 
 	public function changeNav($arrModules, $blnShowAll) 
 	{
@@ -114,3 +106,4 @@ class Themes extends \Backend
 
 
 }
+?>
