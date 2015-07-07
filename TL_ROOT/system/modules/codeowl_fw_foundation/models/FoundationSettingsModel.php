@@ -22,16 +22,23 @@ class FoundationSettingsModel extends \Model
     
     public function getMaxCols() {
     
-        $objModel = FoundationSettingsModel::findAll()->fetchAll();
-        $Settings =$objModel;
-       
-        $ColsArr =array();
-        foreach ($Settings as $k => $set) {
-         	$ColsArr[]=$set['cols'];
+        $objModel = new FoundationSettingsModel;
+        
+        if (NULL === $objModel) {
+            return \Config::get('co_grid_columns_size');
         }
-        $ColsMax= max($ColsArr);
+        $objModel = $objModel::findAll();
+        if (NULL != $objModel) {
+            $Settings = $objModel->fetchAll();
+
+        $ColsArr = array();
+        foreach ($Settings as $k => $set) {
+            $ColsArr[]=$set['cols'];
+        }
+        $ColsMax = max($ColsArr);
     
-    	return $ColsMax;
+        return $ColsMax;
+        }
     }
     
 }
