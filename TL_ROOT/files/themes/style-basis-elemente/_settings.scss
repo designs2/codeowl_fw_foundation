@@ -1,0 +1,73 @@
+// Contao Open Source CMS, (c) 2014 Monique Hahnefeld, LGPL license
+
+	@import "../foundation/scss/foundation/functions";
+$primary-color:#85b526 ;
+$secondary-color:#e9e9e9 ;
+$alert-color:#c60f13 ;
+$success-color:#5da423 ;
+$body-font-color:#222222 ;
+$header-font-color:#222222 ;
+$text-direction:ltr ;
+$total-columns:12 ;
+$small-range-b:47.9375em ;
+$row-width:63.75rem ;
+$column-gutter:0.625em ;
+$global-radius:3px ;
+
+$include-m-html-grid-classes: true;
+$include-xl-html-grid-classes: true;
+$include-xxl-html-grid-classes: true;
+
+$input-focus-bg-color: scale-color(#fff, $lightness: -2%);
+			 $input-border-color: scale-color(#fff, $lightness: -10%);
+			 $input-focus-border-color: scale-color(#fff, $lightness: -20%);
+			 $input-border-style: solid;
+			 $input-border-width: 1px;
+			// $input-border-radius: $global-radius;
+			// $input-disabled-bg: #ddd;
+			$input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+			 $input-include-glowing-effect: false;
+// Media Query Ranges 0,320,480,768,1024,...
+$small-range: (0em, 20em);
+$medium-range: (20.063em, 30em);
+$large-range: (30.063em, 48em);
+$xlarge-range: (48.063em, 64em);
+$xxlarge-range: (64.063em, 99999999em);
+
+$screen: "only screen";
+
+$landscape: "#{$screen} and (orientation: landscape)";
+$portrait: "#{$screen} and (orientation: portrait)";
+
+$small-up: $screen;
+$small-only: "#{$screen} and (max-width: #{upper-bound($small-range)})";
+
+$medium-up: "#{$screen} and (min-width:#{lower-bound($medium-range)})";
+$medium-only: "#{$screen} and (min-width:#{lower-bound($medium-range)}) and (max-width:#{upper-bound($medium-range)})";
+
+$large-up: "#{$screen} and (min-width:#{lower-bound($large-range)})";
+$large-only: "#{$screen} and (min-width:#{lower-bound($large-range)}) and (max-width:#{upper-bound($large-range)})";
+
+$xlarge-up: "#{$screen} and (min-width:#{lower-bound($xlarge-range)})";
+$xlarge-only: "#{$screen} and (min-width:#{lower-bound($xlarge-range)}) and (max-width:#{upper-bound($xlarge-range)})";
+
+$xxlarge-up: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)})";
+$xxlarge-only: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (max-width:#{upper-bound($xxlarge-range)})";
+
+// Legacy
+$small: $medium-up;
+$medium: $medium-up;
+$large: $large-up;
+$xlarge: $xlarge-up;
+$xxlarge: $xxlarge-up;
+$include-m-html-grid-classes: true;
+$include-xl-html-grid-classes: true;
+$include-xxl-html-grid-classes: true;
+
+
+
+
+
+
+
+//
