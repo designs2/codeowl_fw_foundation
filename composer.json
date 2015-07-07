@@ -40,8 +40,8 @@
                 "TL_ROOT/system/modules/codeowl_fw_foundation": "system/modules/codeowl_fw_foundation"
             },
          "files": {
-            "TL_ROOT/files/themes": "themes",
-            "TL_ROOT/files/themes/foundation": "themes/foundation"
+            "TL_ROOT/files/themes": "files/themes",
+            "TL_ROOT/files/themes/foundation": "files/themes/foundation"
         },
         "branch-alias": {
         			"dev-master": "1.0.0"
