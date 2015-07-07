@@ -216,8 +216,10 @@ if (TL_MODE =='FE') {
 
 if (TL_MODE =='BE') {
 // `-,-´ Get the highest value from the FW Settings
-$FoundationSettingsModel = new Codeowl\FoundationSettingsModel;
-$GLOBALS['TL_CONFIG']['co_grid_columns_size'] 	 	= $FoundationSettingsModel->getMaxCols();
+	if (Input::get('do') !=='composer'&&Input::get('do') !=='settings'&&Input::get('do') !=='repository_manager') {
+		$FoundationSettingsModel = new Codeowl\FoundationSettingsModel;
+		$GLOBALS['TL_CONFIG']['co_grid_columns_size'] 	 	= $FoundationSettingsModel->getMaxCols();
+	}	
 
 // `-,-´ SCSS Variablen 
 $GLOBALS['TL_CONFIG']['co_foundation_vars']										= array();
