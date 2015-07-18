@@ -110,8 +110,8 @@ class OutputFoundationVars extends \Controller
           $ScriptStr .= "\n" . '<script src="'.$objCombiner->getCombinedFile().'"></script>';
         }
          
-        $ScriptStr .= "\n" . '<script>
-        $(document).ready(function(){' ;
+        $ScriptStr .= "\n" . '<script>jQuery.noConflict();
+        jQuery(document).ready(function($){' ;
             if ($arrPlugs['tooltip']) {
               $ScriptStr .= "\n" . "$('.ce_text [title]').each(function(index){
             _this = $(this);
