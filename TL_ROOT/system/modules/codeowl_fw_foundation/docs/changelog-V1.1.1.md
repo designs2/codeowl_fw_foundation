@@ -8,7 +8,7 @@
 PHP:">=5.3.2",
 Contao: 3.4.6 - 4.0.0
 
-##Changelog 1.1.0 RC1
+##Changelog 1.1.1
 
 ###New
 
@@ -16,5 +16,6 @@ Contao: 3.4.6 - 4.0.0
 
 ###Fixed
 
-* fetchAll() Problem
-* callback Problem
+- backend error #16
+
+

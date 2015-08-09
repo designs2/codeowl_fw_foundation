@@ -26,7 +26,8 @@ ClassLoader::addClasses(array
 (
 	
 	// `-,-´ HOOKs
-	'Codeowl\OutputFoundationVars' => 'system/modules/codeowl_fw_foundation/classes/OutputFoundationVars.php',
+	'Codeowl\OutputFoundationVars'  => 'system/modules/codeowl_fw_foundation/classes/OutputFoundationVars.php',
+	'Codeowl\Hooks' 				=> 'system/modules/codeowl_fw_foundation/classes/Hooks.php',
 	
 	// `-,-´ Models
 	'Codeowl\FoundationSettingsModel' 	=> 'system/modules/codeowl_fw_foundation/models/FoundationSettingsModel.php',

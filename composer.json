@@ -44,7 +44,7 @@
             "TL_ROOT/files/themes/foundation": "files/themes/foundation"
         },
         "branch-alias": {
-        			"dev-master": "1.1.0"
+        			"dev-master": "1.1.1"
         		}
         }
     }
