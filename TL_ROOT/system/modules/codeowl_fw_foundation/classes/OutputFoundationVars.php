@@ -144,8 +144,10 @@ class OutputFoundationVars extends \Controller
                 
            if ($arrPlugs['mediaelement_player']) {
               $ScriptStr .= "\n" . '<script src="'.$pathFTC.'/mediaelement/mediaelement-and-player.min.js"></script>'."\n";
-              $ScriptStr .= "\n" .  "<script>
+              $ScriptStr .= "\n" .  "<script>jQuery.noConflict();
+            jQuery(document).ready(function($){
             $('video,audio').mediaelementplayer(/* Options */);
+            });
             </script>";
            }     
         }
