@@ -26,7 +26,7 @@ class Hooks
             $FoundationSettingsModel = new FoundationSettingsModel;
                 if (NULL!==$FoundationSettingsModel) {
                      $tableExists = \Database::getInstance()->tableExists($FoundationSettingsModel::getTable());
-                    if(FALSE==$tableExists){return;}
+                    if(FALSE==$tableExists||NULL==$FoundationSettingsModel->getMaxCols()){return;}
                      \Config::set('co_grid_columns_size',$FoundationSettingsModel->getMaxCols());
                 }
             }
