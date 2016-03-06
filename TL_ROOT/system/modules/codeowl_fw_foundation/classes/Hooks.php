@@ -25,6 +25,8 @@ class Hooks
             if(!isset($FoundationSettingsModel)){
             $FoundationSettingsModel = new FoundationSettingsModel;
                 if (NULL!==$FoundationSettingsModel) {
+                     $objStatement = \Database::getInstance()->prepare('select id from `'.$FoundationSettingsModel::getTable().'` LIMIT 1');
+                    if(NULL==$objStatement||FALSE==$objStatement){return;}
                      \Config::set('co_grid_columns_size',$FoundationSettingsModel->getMaxCols());
                 }
             }
