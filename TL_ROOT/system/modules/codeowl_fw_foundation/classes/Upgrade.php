@@ -117,7 +117,13 @@ class Upgrade extends \System
 	public function renameField($table,$oldField,$newField){
 		$db = \Database::getInstance();
 		  if ($db->fieldExists($oldField,$table)) {
-		  	$db->execute("ALTER TABLE \'$table\' RENAME COLUMN \'$oldField\' \'$newField\'");	
+			$info = $db->execute("SHOW FIELDS FROM $table where Field ='$oldField'");
+			if(NULL==$info){continue;}
+			$arrInfo = $info->row();
+			$arrInfo['Null'] = ($arrInfo['Null'] == 'NO') ? 'NOT NULL' : 'NULL';
+			$strAttributes =  $arrInfo['Type']. ' '.$arrInfo['Null'];
+
+		  	$db->execute("ALTER TABLE $table CHANGE $oldField $newField $strAttributes");	
 		  }	
 	}
 
