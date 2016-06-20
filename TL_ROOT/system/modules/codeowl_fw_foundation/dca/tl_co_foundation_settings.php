@@ -133,7 +133,7 @@ $GLOBALS['TL_DCA']['tl_co_foundation_settings'] = array
 	),
 	'palettes' => array
 	(
-		'__selector__'              => array('general_vars','typography_vars','controls_vars','navigation_vars','containers_vars','modal_vars','media_vars','carousel_vars','plugins_vars'),//{font_legend},icon_fonts,fonts;
+		'__selector__'              => array('add_general_vars','add_typography_vars','add_controls_vars','add_navigation_vars','add_containers_vars','add_modal_vars','add_media_vars','add_carousel_vars','add_plugins_vars'),//{font_legend},icon_fonts,fonts;
 
 		'default'                     => '{type_legend},name,theme_folder;
 		{color_legend},primary_color,secondary_color,alert_color,success_color,body_font_color,header_font_color;
@@ -547,39 +547,39 @@ $GLOBALS['TL_DCA']['tl_co_foundation_settings'] = array
 		'add_plugins_vars' 		=> createCheckboxArray('add_plugins_vars',true),
 
 		// `-,-´ Textareas with variables
-		'general_vars' 		=> createCheckboxArray(
+		'general_vars' 		=> createTextareaArray(
 								'general_vars',
 								'true'
 								),
-		'typography_vars' 	=> createCheckboxArray(
+		'typography_vars' 	=> createTextareaArray(
 								'typography_vars',
 								'true'
 								),
-		'controls_vars' 	=> createCheckboxArray(
+		'controls_vars' 	=> createTextareaArray(
 								'controls_vars',
 								'true'
 								),
-		'navigation_vars' 	=> createCheckboxArray(
+		'navigation_vars' 	=> createTextareaArray(
 								'navigation_vars',
 								'true'
 								),
-		'containers_vars' 	=> createCheckboxArray(
+		'containers_vars' 	=> createTextareaArray(
 								'containers_vars',
 								'true'
 								),
-		'modal_vars' 		=> createCheckboxArray(
+		'modal_vars' 		=> createTextareaArray(
 								'modal_vars',
 								'true'
 								),
-		'media_vars' 		=> createCheckboxArray(
+		'media_vars' 		=> createTextareaArray(
 								'media_vars',
 								'true'
 								),
-		'carousel_vars' 	=> createCheckboxArray(
+		'carousel_vars' 	=> createTextareaArray(
 								'carousel_vars',
 								'true'
 								),
-		'plugins_vars' 		=> createCheckboxArray(
+		'plugins_vars' 		=> createTextareaArray(
 								'plugins_vars',
 								'true'
 								)
