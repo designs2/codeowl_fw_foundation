@@ -2,32 +2,17 @@
 /** 
  * Extension for Contao Open Source CMS
  *
- * Copyright (C) 2015 Monique Hahnefeld
+ * Copyright (C) 2016 Monique Hahnefeld
  *
  * @package codeowl_fw_foundation
- * @author  Monique Hahnefeld <info@monique-hahnefeld.de>
- * @link    http://codeowl.org
+ * @author  Monique Hahnefeld <mhahnefeld@designs2.de>
+ * @link    http://designs2.de
  * @license LGPLv3
  *
  * `-,-´
- *	( )  codeowl.org
+ *	 ( )  codeowl set
  *************************/
  
- // ContaoElements FTC BE
- //GROUPS for dma
-// $GLOBALS['TL_LANG']['CTE']['ftc_magellan'] ="Magellan Scroll/Anker Navigation";
-// $GLOBALS['TL_LANG']['CTE']['ftc_content'] ="Inhalt";
-// $GLOBALS['TL_LANG']['CTE']['ftc_callouts_prompts'] ="Pop-Ups";
-// $GLOBALS['TL_LANG']['CTE']['ftc_buttons'] ="Buttons";
-// $GLOBALS['TL_LANG']['CTE']['ftc_links'] ="Links";
-// $GLOBALS['TL_LANG']['CTE']['ftc_row'] ="Reihe / Zeile";
-// $GLOBALS['TL_LANG']['CTE']['ftc_col'] ="Spalte";
-// $GLOBALS['TL_LANG']['CTE']['ftc_media'] ="Media";
-// $GLOBALS['TL_LANG']['CTE']['ftc_tab'] ="Tab";
-// $GLOBALS['TL_LANG']['CTE']['ftc_accordion'] ="Accordion";
-// $GLOBALS['TL_LANG']['CTE']['ftc_clearing'] ="Clearing";
-// $GLOBALS['TL_LANG']['CTE']['ftc_orbit'] ="Orbit";
-// $GLOBALS['TL_LANG']['CTE']['ftc_code'] ="Code";
 
 $GLOBALS['TL_LANG']['MOD']['codeowl_fw_foundation'][0] 		= "Codeowl Framwork Foundation";
 //$GLOBALS['TL_LANG']['MOD']['tl_ftc_presets'] = array("FTC Designvorgaben","Designvorgaben einstellen");

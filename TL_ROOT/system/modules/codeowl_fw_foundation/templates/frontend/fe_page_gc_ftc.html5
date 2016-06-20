@@ -22,7 +22,7 @@
 </head>
 <body id="top" class="{{ua::class}}<?php if ($this->class): ?> <?php echo $this->class; ?><?php endif; ?>"<?php if ($this->onload): ?> onload="<?php echo $this->onload; ?>"<?php endif; ?>>
 
-  <?php if ($this->layout->use_offcanvas=='1'): ?>
+  <?php if ($this->layout->co_fw_use_offcanvas=='1'): ?>
   <div class="off-canvas-wrap" data-offcanvas>
     <div class="inner-wrap"> 
   <?php endif; ?>
@@ -30,7 +30,7 @@
   
   <?php echo $this->getCustomSections('top'); ?>
 
-  <div id="wrapper" class="row <?php if ($this->layout->use_offcanvas=='1'): ?>main-section<?php endif; ?>">
+  <div id="wrapper" class="row <?php if ($this->layout->co_fw_use_offcanvas=='1'): ?>main-section<?php endif; ?>">
 
     <?php if ($this->header): ?>
       <header id="header" class="<?php echo $this->layout->gridCSS['header']; ?>">
@@ -85,7 +85,7 @@
 
   <?php echo $this->getCustomSections('bottom'); ?>
   
-  <?php if ($this->layout->use_offcanvas=='1'): ?>
+  <?php if ($this->layout->co_fw_use_offcanvas=='1'): ?>
       <a class="exit-off-canvas"></a>
       </div>
       </div>

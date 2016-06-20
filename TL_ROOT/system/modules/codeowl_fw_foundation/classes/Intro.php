@@ -1,16 +1,19 @@
 <?php
-/**
- * Contao Open Source CMS
+ /** 
+ * Extension for Contao Open Source CMS
  *
- * Copyright (c) 2005-2014 Leo Feyer
+ * Copyright (C) 2016 Monique Hahnefeld
  *
- * @package   Foundation To Contao
- * @author    Monique Hahnefeld
- * @license   http://www.gnu.org/licenses/lgpl-3.0.html LGPL
- * @copyright 2014 Monique Hahnefeld
- */
+ * @package codeowl_fw_foundation
+ * @author  Monique Hahnefeld <mhahnefeld@designs2.de>
+ * @link    http://designs2.de
+ * @license LGPLv3
+ *
+ * `-,-´
+ *	 ( )  codeowl set
+ *************************/
 
-namespace MHAHNEFELD\FTC;
+namespace Codeowl;
 
 class Intro extends \BackendModule
 {

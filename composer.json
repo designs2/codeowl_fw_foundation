@@ -39,13 +39,13 @@
             "sources":{
                 "TL_ROOT/system/modules/codeowl_fw_foundation": "system/modules/codeowl_fw_foundation"
             },
-         "files": {
-            "TL_ROOT/files/themes": "files/themes",
-            "TL_ROOT/files/themes/foundation": "files/themes/foundation"
+            "runonce": [
+                  "system/modules/codeowl_fw_foundation/config/upgrade.php"
+            ]
         },
         "branch-alias": {
-        			"dev-master": "1.1.1"
-        		}
+        			"dev-master": "2.0.0"
         }
+        
     }
 }

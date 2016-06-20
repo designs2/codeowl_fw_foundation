@@ -42,8 +42,9 @@ ClassLoader::addClasses(array
 	'Codeowl\ModuleTopbarSectionCustom' => 'system/modules/codeowl_fw_foundation/modules/ModuleTopbarSectionCustom.php',
 	'Codeowl\ModuleTopbarSection'  		=> 'system/modules/codeowl_fw_foundation/modules/ModuleTopbarSection.php',
 	// `-,-´ Classes
-	'Codeowl\Intro'  					=> 'system/modules/codeowl_fw_foundation/classes/Intro.php',	
-	'Codeowl\Themes'  					=> 'system/modules/codeowl_fw_foundation/classes/Themes.php',
+	'Codeowl\Upgrade'  					=> 'system/modules/codeowl_fw_foundation/classes/Upgrade.php',	
+	'Codeowl\Intro'  							=> 'system/modules/codeowl_fw_foundation/classes/Intro.php',	
+	'Codeowl\Themes'  						=> 'system/modules/codeowl_fw_foundation/classes/Themes.php',
 	// `-,-´ Elements magellan
 	'Codeowl\ContentMagellanNav'  		=> 'system/modules/codeowl_fw_foundation/elements/magellan/ContentMagellanNav.php',
 	'Codeowl\ContentMagellanStop'  		=> 'system/modules/codeowl_fw_foundation/elements/magellan/ContentMagellanStop.php',
@@ -169,5 +170,22 @@ TemplateLoader::addFiles(array
 	'mod_login_1cl_ftc' => 'system/modules/codeowl_fw_foundation/templates/modules',
 	'mod_login_2cl_ftc' => 'system/modules/codeowl_fw_foundation/templates/modules',
 	'mod_password_ftc' => 'system/modules/codeowl_fw_foundation/templates/modules',
+	// `-,-´ Javascript components 
+	'slider_js' => 'system/modules/codeowl_fw_foundation/templates/js',
+	'dropdown_menu_js' => 'system/modules/codeowl_fw_foundation/templates/js',
+	'drilldown_menu_js' => 'system/modules/codeowl_fw_foundation/templates/js',
+	'magellan_js' => 'system/modules/codeowl_fw_foundation/templates/js',
+	'accordion_js' => 'system/modules/codeowl_fw_foundation/templates/js',
+	'dropdown_js' => 'system/modules/codeowl_fw_foundation/templates/js',
+	'offcanvas_js' => 'system/modules/codeowl_fw_foundation/templates/js',
+	'reveal_js' => 'system/modules/codeowl_fw_foundation/templates/js',
+	'table_js' => 'system/modules/codeowl_fw_foundation/templates/js',
+	'orbit_js' => 'system/modules/codeowl_fw_foundation/templates/js',
+	'tooltip_js' => 'system/modules/codeowl_fw_foundation/templates/js',
+	'abide_pi' => 'system/modules/codeowl_fw_foundation/templates/js',
+	'equilizer_pi' => 'system/modules/codeowl_fw_foundation/templates/js',
+	'interchange_pi' => 'system/modules/codeowl_fw_foundation/templates/js',
+	'toggler_pi' => 'system/modules/codeowl_fw_foundation/templates/js',
+	'sticky_pi' => 'system/modules/codeowl_fw_foundation/templates/js' 
 		
 ));

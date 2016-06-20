@@ -1,16 +1,16 @@
 <?php
-/** 
+ /** 
  * Extension for Contao Open Source CMS
  *
- * Copyright (C) 2015 Monique Hahnefeld
+ * Copyright (C) 2016 Monique Hahnefeld
  *
- * @package codeowl_grid_control
- * @author  Monique Hahnefeld <info@monique-hahnefeld.de>
- * @link    http://codeowl.org
+ * @package codeowl_fw_foundation
+ * @author  Monique Hahnefeld <mhahnefeld@designs2.de>
+ * @link    http://designs2.de
  * @license LGPLv3
  *
  * `-,-´
- *	( )  codeowl.org
+ *	 ( )  codeowl set
  *************************/
 
 namespace Codeowl;
@@ -23,72 +23,66 @@ class Themes extends \Backend
 	public function generate($dc) 
 	{
 		
-		$SettingsArr    = $dc->__get('activeRecord')->row();
-		$folder_url 	= $SettingsArr['theme_folder'];
-		$savePath 		= TL_ROOT.'/'.$folder_url;
-		$settingsFile   = '_settings.scss';
-		$componentsFile = str_replace(' ', '-',strtolower($SettingsArr['name'])).'.scss';
-		$content 		= '';
-		$config 		= '';
-	
+		$activeRecordRow  = $dc->__get('activeRecord')->row();
+		$folder_url 			= $activeRecordRow['theme_folder'];
+		$savePath 				= TL_ROOT.TL_PATH.'/'.$folder_url;
+		$settingsFile   		= '_settings.scss';
+		$configContentFile 	= str_replace(' ', '-',strtolower($activeRecordRow['name'])).'.scss';
+		
+		require_once('../config/framework.php'); 
+		
 		if (!file_exists($savePath)){
 			mkdir($savePath);
 		}
 
-		$content 	   .= '// Contao Open Source CMS, (c) 2014 Monique Hahnefeld, LGPL license'."\r\n\r\n\t".'@import "../foundation/scss/foundation/functions";'."\r\n";
-		$config 	   .= '
+		$settingsContent 	  	= '// Contao Open Source CMS, (c) 2014 Monique Hahnefeld, LGPL license'."\r\n\r\n\t".'@import "../foundation/scss/foundation/functions";'."\r\n";
+		$configContent 	   		= '
 		// Foundation by ZURB
 		// foundation.zurb.com
 		// Licensed under MIT Open Source
 		
 		// Make sure the charset is set appropriately
 		@charset "UTF-8";
-		@import "settings";
-		
 		// Behold, here are all the Foundation components.
-		@import'."\r\n";
+		';
 
 		if (file_exists($savePath."/".$settingsFile)) {
 			unlink($savePath."/".$settingsFile);
 		}
-		if (file_exists($savePath."/".$componentsFile)) {
-			unlink($savePath."/".$componentsFile);
+		if (file_exists($savePath."/".$configContentFile)) {
+			unlink($savePath."/".$configContentFile);
 		}
-		$handle 			= fopen($savePath."/".$settingsFile, "w+");
-		$componentsHandle   = fopen($savePath."/".$componentsFile, "w+");
+		$handle 					= fopen($savePath."/".$settingsFile, "w+");
+		$componentsHandle   = fopen($savePath."/".$configContentFile, "w+");
 		$countComponents    = 0;
-		$ScssVariablenArr	= \Config::get('co_foundation_vars');
-		foreach ($SettingsArr as $key => $value) {
-			if (isset($ScssVariablenArr[$key]['var_scss'])) {
-			
-				$content 	 .= $ScssVariablenArr[$key]['var_scss'].':';	
-				if (isset($ScssVariablenArr[$key]['pre_scss'])) {
-					$content .= ''.$ScssVariablenArr[$key]['pre_scss'];	
-				}
-				$content 	 .= ''.$value;
-				if (isset($ScssVariablenArr[$key]['post_scss'])) {
-					$content .= ''.$ScssVariablenArr[$key]['post_scss'];	
-				}
-				$content 	 .= ' ;'."\r\n";	
+		$arrScssVariables		= \Config::get('co_foundation_vars');
+		
+		$arrConfigFiles 			= array();
+		$arrConfigFiles[]  		= 'settings';
+		foreach ($fwModulePackages as $name => $fwModule ){
+			if($activeRecordRow[$name]){
+				$arrConfigFiles[]   = "\t\'".$fwPathToFolder ."/scss/".$fwModule[0]."\'\r\n";	
 			}
-
-			if (array_key_exists($key.'_vars', $SettingsArr)&&$value == '1') {
-
-				$content 	 .= ''.html_entity_decode($SettingsArr[$key.'_vars'])."\r\n";
-				if ($key == 'global' || $key == 'typografie'){continue;}	
-				if ($countComponents!==0) {
-					$config  .= "\t".',';	
-				}else {
-					$config  .= "\t";
-				}
-				$config  	 .= '"../foundation/scss/foundation/components/'.str_replace('_', '-',$key).'"'."\r\n";
-				$countComponents++;
-			}
-			
 		}
-		$config  			 .= ';';	
-		fputs($handle, $content);
-		fputs($componentsHandle,$config);
+
+		$configContent  	 .= "@import \r\n".implode(',', $arrConfigFiles).';';
+			
+		
+		$arrSettingVariables 	= array();
+		foreach ($arrScssVariables as $field => $settings) {
+			$arrSettingVariables[] 			= "\t".$settings['var_scss'].': '.$settings['pre_scss'].$activeRecordRow[$field].$settings['post_scss']."\r\n";	
+		}
+		
+		foreach ($fwSettingTextfields as $area){
+			if($activeRecordRow['add_'.$area]){
+				$arrSettingVariables[] 		= ''.html_entity_decode($activeRecordRow[$area])."\r\n";
+			}	
+		}
+			
+		$settingsContent		.= "\r\n".implode("\r\n", $arrSettingVariables);
+
+		fputs($handle, $settingsContent);
+		fputs($componentsHandle,$configContent);
 		fclose($handle);
 		fclose($componentsHandle);
 		unset($handle);

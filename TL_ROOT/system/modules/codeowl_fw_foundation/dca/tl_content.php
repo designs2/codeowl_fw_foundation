@@ -1,71 +1,71 @@
 <?php
-/** 
+ /** 
  * Extension for Contao Open Source CMS
  *
- * Copyright (C) 2015 Monique Hahnefeld
+ * Copyright (C) 2016 Monique Hahnefeld
  *
  * @package codeowl_fw_foundation
- * @author  Monique Hahnefeld <info@monique-hahnefeld.de>
- * @link    http://codeowl.org
+ * @author  Monique Hahnefeld <mhahnefeld@designs2.de>
+ * @link    http://designs2.de
  * @license LGPLv3
  *
  * `-,-´
- *  ( )  codeowl.org
+ *	 ( )  codeowl set
  *************************/
 
 
-$fieldsSize=count($GLOBALS['TL_DCA']['tl_content']['fields'])-1;
-$palettesSize=count($palettes)-1;
-$default = '{type_legend},type,headline;';
-$expert ='{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
+$fieldsSize 	= count($GLOBALS['TL_DCA']['tl_content']['fields'])-1;
+$palettesSize = count($palettes)-1;
+$default 		= '{type_legend},type,headline;';
+$expert 		= '{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
 
 // `-,-´ Add palettes for contentelements
 array_insert($GLOBALS['TL_DCA']['tl_content']['palettes'], $palettesSize, array
 (
-	'orbit'        						        => $default.'{source_legend},multiSRC,sortBy,useHomeDir;{image_legend},size,numberOfItems;'.$expert,
-	'orbit_start'        				      => $default.$expert,
-	'orbit_start_inside'        	    => $default.$expert,
-	'orbit_stop'        				      => $default.$expert,
-	'orbit_stop_inside'        			  => $default.$expert,
+	'co_fw_orbit'        						        => $default.'{source_legend},multiSRC,sortBy,useHomeDir;{image_legend},size,numberOfItems;'.$expert,
+	'co_fw_orbit_start'        				      => $default.$expert,
+	'co_fw_orbit_start_inside'        	    => $default.$expert,
+	'co_fw_orbit_stop'        				      => $default.$expert,
+	'co_fw_orbit_stop_inside'        			  => $default.$expert,
 	
-	'clearing'            				    => $default.'{source_legend},multiSRC,sortBy,useHomeDir;{image_legend},size,perRow,fullsize,perPage,numberOfItems;'.$expert,
+	'co_fw_clearing'            				    => $default.'{source_legend},multiSRC,sortBy,useHomeDir;{image_legend},size,co_fw_perRow,co_fw_fullsize,co_fw_perPage,co_fw_numberOfItems;'.$expert,
 	
-	'button_ftc'            			    => '{type_legend},type,btn_name,cta_href,use_reveal;{button_legend},btn_size,btn_styles;'.$expert,
-	'button_bar_start_ftc'          	=> $default.$expert,
-	'button_bar_stop_ftc'           	=> '{type_legend},type;'.$expert,
-	'button_group'            			  => '{type_legend},type;{dropdown_legend},list_links;{button_legend},btn_size,btn_styles;'.$expert,
+	'co_fw_button_ftc'            			    => '{type_legend},type,co_fw_btn_name,co_fw_cta_href,co_fw_use_reveal;{button_legend},co_fw_btn_size,co_fw_btn_styles;'.$expert,
+	'co_fw_button_bar_start_ftc'          	=> $default.$expert,
+	'co_fw_button_bar_stop_ftc'           	=> '{type_legend},type;'.$expert,
+	'co_fw_button_group'            			  => '{type_legend},type;{dropdown_legend},co_fw_list_links;{button_legend},co_fw_btn_size,co_fw_btn_styles;'.$expert,
 	
-	'dropdown_buttons'            		=> '{type_legend},type,btn_name;{dropdown_legend},list_links,drop_align;{button_legend},btn_size,btn_styles,btn_split,btn_hover;'.$expert,
-	'dropdown_buttons_content_start'  => '{ftc_legend},small_ftc,large_ftc,float_ftc,align_ftc;{type_legend},type,btn_name,drop_align;{button_legend},btn_size,btn_styles,btn_split,btn_hover;'.$expert,
-	'dropdown_buttons_content_stop'   => '{type_legend},type;'.$expert,
+	'co_fw_dropdown_buttons'            		=> '{type_legend},type,co_fw_btn_name;{dropdown_legend},co_fw_list_links,co_fw_drop_align;{button_legend},co_fw_btn_size,co_fw_btn_styles,co_fw_btn_split,co_fw_btn_hover;'.$expert,
+	'co_fw_dropdown_buttons_content_start'  => '{ftc_legend},co_fw_small_ftc,co_fw_large_ftc,co_fw_float_ftc,co_fw_align_ftc;{type_legend},type,co_fw_btn_name,co_fw_drop_align;{button_legend},co_fw_btn_size,co_fw_btn_styles,co_fw_btn_split,co_fw_btn_hover;'.$expert,
+	'co_fw_dropdown_buttons_content_stop'   => '{type_legend},type;'.$expert,
 	
-	'joyride'           				      => '{type_legend},type;{joyride_legend},joyride;'.$expert,
-	'alert_box'            				    => '{type_legend},type;{alert_legend},alert_kind,alert_style,alert_txt;'.$expert,
-	'reveal_modal_start'            	=> '{type_legend},type;'.$expert,
-	'reveal_modal_stop'            		=> '{type_legend},type;'.$expert,
+	'co_fw_joyride'           				      => '{type_legend},type;{joyride_legend},co_fw_joyride;'.$expert,
+	'co_fw_alert_box'            				    => '{type_legend},type;{alert_legend},co_fw_alert_kind,co_fw_alert_style,co_fw_alert_txt;'.$expert,
+	'co_fw_reveal_modal_start'            	=> '{type_legend},type;'.$expert,
+	'co_fw_reveal_modal_stop'            		=> '{type_legend},type;'.$expert,
 	
-	'magellan_stop'            			  => $default.$expert,
-	'magellan_nav'            			  => '{type_legend},type;{magellan_legend},magellan_nav;'.$expert,
+	'co_fw_magellan_stop'            			  => $default.$expert,
+	'co_fw_magellan_nav'            			  => '{type_legend},type;{magellan_legend},co_fw_magellan_nav;'.$expert,
 
-	'blockquote'            			    => $default.'{blockquote_legend},blockquote,cite;'.$expert,
-	'vcard'            					      => $default.'{vcard_legend},vcard;'.$expert,
-	'def_list'            				    => $default.'{list_legend},def_list;'.$expert,
+	'co_fw_blockquote'            			    => $default.'{blockquote_legend},co_fw_blockquote,co_fw_cite;'.$expert,
+	'co_fw_vcard'            					      => $default.'{vcard_legend},co_fw_vcard;'.$expert,
+	'co_fw_def_list'            				    => $default.'{list_legend},co_fw_def_list;'.$expert,
 	
-	'progress_bar'            			  => '{type_legend},type,progress_size,btn_styles;'.$expert,
+	'co_fw_progress_bar'            			  => '{type_legend},type,co_fw_progress_size,co_fw_btn_styles;'.$expert,
 	
-	'tab_ftc_start'  					        => $default.'{nav_legend},tabs_nav,tabs_align;'.$expert ,
-	'tab_ftc_stop'   					        => '{type_legend},type;'.$expert,
-	'tab_ftc_start_inside'  			    => '{type_legend},type;'.$expert,
-	'tab_ftc_stop_inside'   			    => '{type_legend},type;'.$expert,
+	'co_fw_tab_ftc_start'  					        => $default.'{nav_legend},co_fw_tabs_nav,co_fw_tabs_align;'.$expert,
+	'co_fw_tab_ftc_stop'   					        => '{type_legend},type;'.$expert,
+	'co_fw_tab_ftc_start_inside'  			    => '{type_legend},type;'.$expert,
+	'co_fw_tab_ftc_stop_inside'   			    => '{type_legend},type;'.$expert,
 	
-	'acc_ftc_start'  					        => $default.$expert,
-	'acc_ftc_stop'   					        => '{type_legend},type;'.$expert,
-	'acc_ftc_start_inside'  			    => $default.$expert,
-	'acc_ftc_stop_inside'   			    => '{type_legend},type;'.$expert,
-	'price_table'        				      => $default.'{table_legend},price_table,cta_href;'.$expert,
+	'co_fw_acc_ftc_start'  					        => $default.$expert,
+	'co_fw_acc_ftc_stop'   					        => '{type_legend},type;'.$expert,
+	'co_fw_acc_ftc_start_inside'  			    => $default.$expert,
+	'co_fw_acc_ftc_stop_inside'   			    => '{type_legend},type;'.$expert,
+	'co_fw_price_table'        				      => $default.'{table_legend},co_fw_price_table,co_fw_cta_href;'.$expert,
 	
-	'flex_video'        				      => $default.'{video_legend},use_youtube,vimeo,own_src;'.$expert,
-	'placeholder_image'               => $default.'{placeholder_legend},is_bw,stamp,topic;{image_legend},alt,title,size,imagemargin,imageUrl,caption;'.$expert,
+	'co_fw_flex_video'        				      => $default.'{video_legend},co_fw_use_youtube,co_fw_vimeo,co_fw_own_src;'.$expert,
+	'co_fw_placeholder_image'               => $default.'{placeholder_legend},co_fw_is_bw,co_fw_stamp,co_fw_topic;{image_legend},alt,title,size,co_fw_imagemargin,imageUrl,caption;'.$expert,
 
   
   ));
@@ -79,19 +79,19 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['palettes'], $palettesSize, array
   // `-,-´ Add subpalettes for contentelements
   array_insert($GLOBALS['TL_DCA']['tl_content']['subpalettes'], $subpalettesSize, array
   (
-  	'use_reveal'         => 'modal_id',
-  	'use_youtube'        => 'playerSize,autoplay,youtube_vimeo_id',
-  	'vimeo'              => 'playerSize,autoplay,youtube_vimeo_id',
-  	'own_src'            => 'playerSize,autoplay,posterSRC,video_src,track_src,flash_player_src,flash_video_src'
+  	'co_fw_use_reveal'         => 'co_fw_modal_id',
+  	'co_fw_use_youtube'        => 'playerSize,autoplay,co_fw_youtube_vimeo_id',
+  	'co_fw_vimeo'              => 'playerSize,autoplay,co_fw_youtube_vimeo_id',
+  	'co_fw_own_src'            => 'playerSize,autoplay,posterSRC,co_fw_video_src,co_fw_track_src,co_fw_flash_player_src,co_fw_flash_video_src'
   ));
   
 array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
 (
 
 // `-,-´ Tabs
-'tabs_nav' => array
+'co_fw_tabs_nav' => array
      (
-         'label'                 => &$GLOBALS['TL_LANG']['tl_content']['tabs_nav'],
+         'label'                 => &$GLOBALS['TL_LANG']['tl_content']['co_fw_tabs_nav'],
          'exclude'               => true,
          'inputType'             => 'multiColumnWizard',
          'eval' => array
@@ -101,19 +101,19 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
              (
                  'value' => array
                  (
-                     'label'     => &$GLOBALS['TL_LANG']['tl_content']['tabs_nav']['value'],
+                     'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_tabs_nav']['value'],
                      'inputType' => 'text',
                      'eval'      => array('class'=>'tl_text_2'),
                  ),
                  'label' => array
                  (
-                     'label'     => &$GLOBALS['TL_LANG']['tl_content']['tabs_nav']['label'],
+                     'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_tabs_nav']['label'],
                      'inputType' => 'text',
                      'eval'      => array('class'=>'tl_text_2'),
                  ),
                  'is_active' => array
                  (
-                     'label'     => &$GLOBALS['TL_LANG']['tl_content']['tabs_nav']['is_active'],
+                     'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_tabs_nav']['is_active'],
                      'inputType' => 'checkbox',
                      'eval'      => array('columnPos'=>2),
                  )
@@ -122,37 +122,37 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
          'sql'                   => "blob NULL",
      ),
      
-'tabs_align' => array
+'co_fw_tabs_align' => array
    		(
-   			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['tabs_align'],
+   			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_tabs_align'],
    			'default'                 => '',
    			'options'=>array('horizontal','vertical'),
    			'exclude'                 => true,
    		
    			'inputType'               => 'select',
   
-   			'reference'               => &$GLOBALS['TL_LANG']['tl_content']['tabs_align_options'],
+   			'reference'               => &$GLOBALS['TL_LANG']['tl_content']['co_fw_tabs_align_options'],
    			'eval'                    => array('helpwizard'=>false, 'chosen'=>false, 'submitOnChange'=>false, 'tl_class'=>'w50'),
    			'sql'                     => "varchar(255) NOT NULL default ''"
    		),
 // `-,-´ Liststyle
-'list_style_type' => array
+'co_fw_list_style_type' => array
    		(
-   			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['list_style_type'],
+   			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_list_style_type'],
    			'default'                 => '',
    			'options'=>array(' ','no-bullet', 'square', 'circle','disc'),
    			'exclude'                 => true,
 
    			'inputType'               => 'select',
   
-   			'reference'               => &$GLOBALS['TL_LANG']['tl_content']['list_style_type_options'],
+   			'reference'               => &$GLOBALS['TL_LANG']['tl_content']['co_fw_list_style_type_options'],
    			'eval'                    => array('helpwizard'=>false, 'chosen'=>false, 'submitOnChange'=>false, 'tl_class'=>'w50'),
    			'sql'                     => "varchar(255) NOT NULL default ''"
    		),
 // `-,-´ Definition List  
-  'def_list' => array
+  'co_fw_def_list' => array
      		(
-     			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['def_list'],
+     			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_def_list'],
      		'exclude'               => true,
      		    'inputType'             => 'multiColumnWizard',
      		    'eval' => array
@@ -162,19 +162,19 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
      		        (
      		            'title' => array
      		            (
-     		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['def_list']['title'],
+     		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_def_list']['title'],
      		                'inputType' => 'text',
      		                'eval'      => array('class'=>'tl_text_3'),
      		            ),
      		            'definition' => array
      		            (
-     		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['def_list']['definition'],
+     		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_def_list']['definition'],
      		                'inputType' => 'textarea',
      		                'eval'      => array('class'=>'tl_text_2'),
      		            ),
      		            'class' => array
      		            (
-     		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['def_list']['class'],
+     		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_def_list']['class'],
      		                'inputType' => 'text',
      		                'eval'      => array('class'=>'tl_text_3'),
      		            )
@@ -183,9 +183,9 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
      		    'sql'                   => "blob NULL",
      		), 
 // `-,-´ Price Table 
-     'price_table' => array
+     'co_fw_price_table' => array
         		(
-        			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['price_table'],
+        			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_price_table'],
         		'exclude'               => true,
         		'default'=>'a:7:{i:0;a:2:{s:7:"content";s:16:"Foundation Theme";s:5:"class";s:5:"title";}i:1;a:2:{s:7:"content";s:10:"199,99 €";s:5:"class";s:5:"price";}i:2;a:2:{s:7:"content";s:11:"Top Angebot";s:5:"class";s:11:"description";}i:3;a:2:{s:7:"content";s:20:"5 Responsive Layouts";s:5:"class";s:11:"bullet-item";}i:4;a:2:{s:7:"content";s:20:"20 erweiterte Module";s:5:"class";s:11:"bullet-item";}i:5;a:2:{s:7:"content";s:3:"...";s:5:"class";s:11:"bullet-item";}i:6;a:2:{s:7:"content";s:17:"Angebot anfordern";s:5:"class";s:10:"cta-button";}}',
         		    'inputType'             => 'multiColumnWizard',
@@ -197,13 +197,13 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
         		           
         		            'content' => array
         		            (
-        		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['price_table']['content'],
+        		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_price_table']['content'],
         		                'inputType' => 'textarea',
         		                'eval'      => array('class'=>'tl_text_2'),
         		            ),
         		            'class' => array
         		            (
-        		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['price_table']['class'],
+        		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_price_table']['class'],
         		                'inputType' => 'text',
         		                'eval'      => array('class'=>'tl_text_3'),
         		            )
@@ -211,9 +211,9 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
         		    ),
         		    'sql'                   => "blob NULL",
         		),
-        'cta_href' => array
+        'co_fw_cta_href' => array
         (
-        	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['cta_href'],
+        	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_cta_href'],
         	//'exclude'                 => true,
         	'search'                  => true,
         	'inputType'               => 'text',
@@ -226,9 +226,9 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
         ),
         
         // `-,-´ Buttonlist or Linklist
-        'btn_name' => array
+        'co_fw_btn_name' => array
         (
-        	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['btn_name'],
+        	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_btn_name'],
         	//'exclude'                 => true,
         	'search'                  => true,
         	'inputType'               => 'text',
@@ -236,9 +236,9 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
         	
         		'sql'                     => "varchar(255) NOT NULL default ''"
         ),
-        'list_links' => array
+        'co_fw_list_links' => array
            		(
-           			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['list_links'],
+           			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_list_links'],
            		'exclude'               => true,
            		'default'=>'',
            		    'inputType'             => 'multiColumnWizard',
@@ -250,13 +250,13 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
            		           
            		            'content' => array
            		            (
-           		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['list_links']['content'],
+           		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_list_links']['content'],
            		                'inputType' => 'text',
            		                'eval'      => array('class'=>'tl_text_2'),
            		            ),
            		            'href' => array
            		            (
-           		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['list_links']['href'],
+           		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_list_links']['href'],
            		                'inputType' => 'text',
            		                'eval'      => array('class'=>'tl_text_3','rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50 wizard'),
            		                'wizard' => array
@@ -266,7 +266,7 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
            		            ),
            		            'class' => array
            		            (
-           		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['list_links']['class'],
+           		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_list_links']['class'],
            		                'inputType' => 'text',
            		                'eval'      => array('class'=>'tl_text_3'),
            		            )
@@ -275,100 +275,100 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
            		    'sql'                   => "blob NULL",
            		),
 // `-,-´ Buttons settings
-'btn_size' => array
+'co_fw_btn_size' => array
    		(
-   			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['btn_size'],
+   			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_btn_size'],
    			'default'                 => '',
    			'options'=>array(' ','tiny','small','large'),
    			'exclude'                 => true,
    		
    			'inputType'               => 'select',
   
-   			'reference'               => &$GLOBALS['TL_LANG']['tl_content']['btn_size_options'],
+   			'reference'               => &$GLOBALS['TL_LANG']['tl_content']['co_fw_btn_size_options'],
    			'eval'                    => array('helpwizard'=>false, 'chosen'=>false, 'submitOnChange'=>false, 'tl_class'=>'w50'),
    			'sql'                     => "varchar(255) NOT NULL default ''"
    		),
-  'btn_styles' => array
+  'co_fw_btn_styles' => array
      		(
-     			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['btn_styles'],
+     			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_btn_styles'],
      			'default'                 => '',
      			'options'=>array(' ','alert','success','secondary','radius','round','disabled','expand'),
      			'exclude'                 => true,
      			
      			'inputType'               => 'select',
     
-     			'reference'               => &$GLOBALS['TL_LANG']['tl_content']['btn_styles_options'],
+     			'reference'               => &$GLOBALS['TL_LANG']['tl_content']['co_fw_btn_styles_options'],
      			'eval'                    => array('multiple'=>true,'helpwizard'=>false, 'chosen'=>false, 'submitOnChange'=>false, 'tl_class'=>'w50 m12'),
      			'sql'                     => "varchar(255) NOT NULL default ''"
      		),
-     'btn_split' => array
+     'co_fw_btn_split' => array
      (
-     	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['btn_split'],
+     	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_btn_split'],
      	'exclude'                 => true,
      	'inputType'               => 'checkbox',
      	'eval'                    => array('submitOnChange'=>false, 'tl_class'=>'w50 clr'),
      	'sql'                     => "char(1) NOT NULL default ''"
      ),
 // `-,-´ Dropdown
-   'drop_align' => array
+   'co_fw_drop_align' => array
       		(
-      			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['drop_align'],
+      			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_drop_align'],
       			'default'                 => '',
       			'options'=>array(' ','top','down','left','right'),
       			'exclude'                 => true,
       		
       			'inputType'               => 'select',
     
-      			'reference'               => &$GLOBALS['TL_LANG']['tl_content']['drop_align_options'],
+      			'reference'               => &$GLOBALS['TL_LANG']['tl_content']['co_fw_drop_align_options'],
       			'eval'                    => array('helpwizard'=>false, 'chosen'=>false, 'submitOnChange'=>false, 'tl_class'=>'w50'),
       			'sql'                     => "varchar(255) NOT NULL default ''"
       		),  
 // `-,-´ open modal with btn
-      'use_reveal' => array
+      'co_fw_use_reveal' => array
       (
-      	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['use_reveal'],
+      	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_use_reveal'],
       	'exclude'                 => true,
       	'inputType'               => 'checkbox',
       	'eval'                    => array('submitOnChange'=>true),
       	'sql'                     => "char(1) NOT NULL default ''"
       ),
-      'modal_id' => array
+      'co_fw_modal_id' => array
       (
-      	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['modal_id'],
+      	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_modal_id'],
       	'exclude'                 => true,
       	'inputType'               => 'text',
       	'eval'                    => array('maxlength'=>255, 'tl_class'=>'clr w50'),
       	'sql'                     => "varchar(255) NOT NULL default ''"
       ),
-      'alert_kind' => array
+      'co_fw_alert_kind' => array
       (
-      	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['alert_kind'],
+      	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_alert_kind'],
       		'default'                 => '',
       		'options'=>array('info','secondary','success','warning','alert'),
       		'exclude'                 => true,
       	
       		'inputType'               => 'select',
   
-      		'reference'               => &$GLOBALS['TL_LANG']['tl_content']['alert_kind'],
+      		'reference'               => &$GLOBALS['TL_LANG']['tl_content']['co_fw_alert_kind'],
       		'eval'                    => array('helpwizard'=>false, 'chosen'=>false, 'submitOnChange'=>false, 'tl_class'=>'w50'),
       		'sql'                     => "varchar(64) NOT NULL default ''"
       ),
-      'alert_style' => array
+      'co_fw_alert_style' => array
       (
-         'label'                   => &$GLOBALS['TL_LANG']['tl_content']['alert_style'],
+         'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_alert_style'],
          	'default'                 => '',
          	'options'=>array(' ','round','radius'),
          	'exclude'                 => true,
          
          	'inputType'               => 'select',
         
-         	'reference'               => &$GLOBALS['TL_LANG']['tl_content']['alert_style'],
+         	'reference'               => &$GLOBALS['TL_LANG']['tl_content']['co_fw_alert_style'],
          	'eval'                    => array('helpwizard'=>false, 'chosen'=>false, 'submitOnChange'=>false, 'tl_class'=>'w50'),
          	'sql'                     => "varchar(64) NOT NULL default ''"
       ),
-      'alert_txt' => array
+      'co_fw_alert_txt' => array
       (
-      	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['btn_name'],
+      	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_btn_name'],
       	//'exclude'                 => true,
       	'search'                  => true,
       	'inputType'               => 'textarea',
@@ -378,9 +378,9 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
       ),
       
 // `-,-´ joyride
-      'joyride' => array
+      'co_fw_joyride' => array
              (
-                 'label'                 => &$GLOBALS['TL_LANG']['tl_content']['joyride'],
+                 'label'                 => &$GLOBALS['TL_LANG']['tl_content']['co_fw_joyride'],
                  'exclude'               => true,
                  'inputType'             => 'multiColumnWizard',
                  'default' =>'a:3:{i:0;a:5:{s:2:"id";s:7:"btn_480";s:5:"class";s:0:"";s:3:"txt";s:5:"Start";s:7:"content";s:34:"<h4>#Stop1</h4><p>Some Content</p>";s:7:"options";s:35:"tip_location:top;tip_animation:fade";}i:1;a:5:{s:2:"id";s:10:"article-68";s:5:"class";s:5:"alert";s:3:"txt";s:10:"Next Modal";s:7:"content";s:34:"<h4>#Stop2</h4><p>Some Content</p>";s:7:"options";s:64:"tip_location:left;tip_animation:fade; expose_add_class : \'alert\'";}i:2;a:5:{s:2:"id";s:10:"article-70";s:5:"class";s:0:"";s:3:"txt";s:3:"End";s:7:"content";s:34:"<h4>#Stop3</h4><p>Some Content</p>";s:7:"options";s:18:"tip_location:right";}}',
@@ -391,7 +391,7 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
                      (
                          'id' => array
                          (
-                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['joyride']['id'],
+                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_joyride']['id'],
                              'inputType' => 'text',
                              'eval'      => array('class'=>'tl_text_3'),
                              
@@ -399,7 +399,7 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
                     
                          'txt' => array
                          (
-                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['joyride']['txt'],
+                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_joyride']['txt'],
                              
                              'inputType' => 'text',
                              'eval'      => array('class'=>'tl_text_3'),
@@ -407,7 +407,7 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
                          ),
                          'content' => array
                          (
-                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['joyride']['content'],
+                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_joyride']['content'],
                              
                              'inputType' => 'textarea',
                              'eval'      => array('allowHtml'=>true,'class'=>'tl_text_1'),
@@ -415,7 +415,7 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
                          ),
                          'options' => array
                          (
-                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['joyride']['options'],
+                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_joyride']['options'],
                              
                              'inputType' => 'text',
                              'eval'      => array('class'=>'tl_text_2','allowHtml'=>true),
@@ -426,26 +426,26 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
                  ),
                  'sql'                   => "blob NULL",
              ), 
-     'btn_hover' => array
+     'co_fw_btn_hover' => array
      (
-     	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['btn_hover'],
+     	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_btn_hover'],
      	'exclude'                 => true,
      	'inputType'               => 'checkbox',
      	'eval'                    => array('submitOnChange'=>false, 'tl_class'=>'w50'),
      	'sql'                     => "char(1) NOT NULL default ''"
      ),
 // `-,-´ Blockquote
-    'blockquote' => array
+    'co_fw_blockquote' => array
     (
-    	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['blockquote'],
+    	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_blockquote'],
     	'exclude'                 => true,
     	'inputType'               => 'textarea',
     	'eval'                    => array('maxlength'=>2000, 'tl_class'=>'long'),
     	'sql'                     => "varchar(2000) NOT NULL default ''"
     ),
-    'cite' => array
+    'co_fw_cite' => array
     (
-    	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['cite'],
+    	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_cite'],
     	'exclude'                 => true,
     	'inputType'               => 'text',
     	'eval'                    => array('maxlength'=>255, 'tl_class'=>'clr w50'),
@@ -453,9 +453,9 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
     ),
     
 // `-,-´ VCard
-    'vcard' => array
+    'co_fw_vcard' => array
        		(
-       			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['vcard'],
+       			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_vcard'],
        		'exclude'               => true,
        		'default'=>'a:6:{i:0;a:2:{s:7:"content";s:17:"Monique Hahnefeld";s:5:"class";s:2:"fn";}i:1;a:2:{s:7:"content";s:26:"Friedrich-Karl-Straße 20A";s:5:"class";s:14:"street-address";}i:2;a:2:{s:7:"content";s:6:"Berlin";s:5:"class";s:8:"locality";}i:3;a:2:{s:7:"content";s:6:"Berlin";s:5:"class";s:5:"state";}i:4;a:2:{s:7:"content";s:5:"12103";s:5:"class";s:3:"zip";}i:5;a:2:{s:7:"content";s:25:"info@monique-hahnefeld.de";s:5:"class";s:5:"email";}}',
        		    'inputType'             => 'multiColumnWizard',
@@ -467,13 +467,13 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
        		           
        		            'content' => array
        		            (
-       		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['vcard']['content'],
+       		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_vcard']['content'],
        		                'inputType' => 'textarea',
        		                'eval'      => array('class'=>'tl_text_2'),
        		            ),
        		            'class' => array
        		            (
-       		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['vcard']['class'],
+       		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_vcard']['class'],
        		                'inputType' => 'text',
        		                'eval'      => array('class'=>'tl_text_3'),
        		            )
@@ -482,9 +482,9 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
        		    'sql'                   => "blob NULL",
        		),
 // `-,-´ Video	
-      'video_src' => array
+      'co_fw_video_src' => array
              (
-                 'label'                 => &$GLOBALS['TL_LANG']['tl_content']['video_src'],
+                 'label'                 => &$GLOBALS['TL_LANG']['tl_content']['co_fw_video_src'],
                  'exclude'               => true,
                  'inputType'             => 'multiColumnWizard',
                  'default' =>'a:3:{i:0;a:2:{s:4:"mime";s:9:"video/mp4";s:3:"src";s:0:"";}i:1;a:2:{s:4:"mime";s:9:"video/ogg";s:3:"src";s:0:"";}i:2;a:2:{s:4:"mime";s:10:"video/webm";s:3:"src";s:0:"";}}',
@@ -495,13 +495,13 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
                      (
                          'mime' => array
                          (
-                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['video_src']['mime'],
+                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_video_src']['mime'],
                              'inputType' => 'text',
                              'eval'      => array('class'=>'tl_text_3'),
                          ),
                          'src' => array
                          (
-                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['video_src']['src'],
+                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_video_src']['src'],
                              'inputType'               => 'fileTree',
                              'eval'                    => array('filesOnly'=>true, 'fieldType'=>'radio',  'tl_class'=>'tl_text_1'),
                            
@@ -510,9 +510,9 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
                  ),
                  'sql'                   => "blob NULL",
              ),
-      'track_src' => array
+      'co_fw_track_src' => array
              (
-                 'label'                 => &$GLOBALS['TL_LANG']['tl_content']['track_src'],
+                 'label'                 => &$GLOBALS['TL_LANG']['tl_content']['co_fw_track_src'],
                  'exclude'               => true,
                  'inputType'             => 'multiColumnWizard',
                  'default' =>'a:2:{i:0;a:3:{s:4:"kind";s:8:"captions";s:3:"src";s:0:"";s:4:"lang";s:2:"de";}i:1;a:3:{s:4:"kind";s:8:"captions";s:3:"src";s:0:"";s:4:"lang";s:2:"en";}}',
@@ -523,7 +523,7 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
                      (
                          'kind' => array
                          (
-                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['track_src']['kind'],
+                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_track_src']['kind'],
                              'inputType' => 'select',
                              'options'=>array('captions',
                              'chapters',
@@ -531,18 +531,18 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
                              'metadata',
                              'subtitles'),
                              'eval'      => array('class'=>'tl_text_2'),
-                             	'reference'               => &$GLOBALS['TL_LANG']['tl_content']['track_src_options'],
+                             	'reference'               => &$GLOBALS['TL_LANG']['tl_content']['co_fw_track_src_options'],
                          ),
                          'src' => array
                          (
-                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['track_src']['src'],
+                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_track_src']['src'],
                              'inputType'               => 'fileTree',
                              'eval'                    => array('filesOnly'=>true, 'fieldType'=>'radio',  'tl_class'=>'tl_text_1'),
                            
                          ),
                          'lang' => array
                          (
-                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['track_src']['lang'],
+                             'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_track_src']['lang'],
                              'inputType' => 'text',
                              'eval'      => array('class'=>'tl_text_4'),
                          ),
@@ -551,18 +551,18 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
                  'sql'                   => "blob NULL",
              ),  
              
-         'flash_player_src' => array
+         'co_fw_flash_player_src' => array
          (
-             'label'     => &$GLOBALS['TL_LANG']['tl_content']['flash_player_src'],
+             'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_flash_player_src'],
              'exclude'                 => true,
              'inputType'               => 'fileTree',
              'eval'                    => array('filesOnly'=>true, 'fieldType'=>'radio',  'tl_class'=>'w50'),
              'sql'                     => "binary(16) NULL"
            
          ), 
-        'flash_video_src' => array
+        'co_fw_flash_video_src' => array
         (
-            'label'     => &$GLOBALS['TL_LANG']['tl_content']['flash_video_src'],
+            'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_flash_video_src'],
             'exclude'                 => true,
             'inputType'               => 'fileTree',
             'eval'                    => array('filesOnly'=>true, 'fieldType'=>'radio',  'tl_class'=>'w50'),
@@ -570,79 +570,79 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
           
         ), 
 // `-,-´ Flexvideo
-    	'youtube_vimeo_id' => array
+    	'co_fw_youtube_vimeo_id' => array
     	(
-    		'label'                   => &$GLOBALS['TL_LANG']['tl_content']['youtube_vimeo_id'],
+    		'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_youtube_vimeo_id'],
     		'exclude'                 => true,
     		'inputType'               => 'text',
     		'eval'                    => array('rgxp'=>'url', 'mandatory'=>true),
     		'sql'                     => "varchar(16) NOT NULL default ''"
     	),
-       'use_youtube' => array
+       'co_fw_use_youtube' => array
        (
-       	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['use_youtube'],
+       	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_use_youtube'],
        	'exclude'                 => true,
        	'inputType'               => 'checkbox',
        	'eval'                    => array('submitOnChange'=>true),
        	'sql'                     => "char(1) NOT NULL default ''"
        ),
-       'vimeo' => array
+       'co_fw_vimeo' => array
        (
-       	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['vimeo'],
+       	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_vimeo'],
        	'exclude'                 => true,
        	'inputType'               => 'checkbox',
        	'eval'                    => array('submitOnChange'=>true),
        	'sql'                     => "char(1) NOT NULL default ''"
        ),
-       'own_src' => array
+       'co_fw_own_src' => array
        (
-       	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['own_src'],
+       	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_own_src'],
        	'exclude'                 => true,
        	'inputType'               => 'checkbox',
        	'eval'                    => array('submitOnChange'=>true),
        	'sql'                     => "char(1) NOT NULL default ''"
        ),
-       'progress_size' => array
+       'co_fw_progress_size' => array
        (
-       	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['progress_size'],
+       	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_progress_size'],
        	'exclude'                 => true,
        	'inputType'               => 'text',
        	'eval'                    => array('placeholder'=>'1-100%','maxlength'=>32, 'tl_class'=>'clr w50'),
        	'sql'                     => "varchar(32) NOT NULL default ''"
        ),
 // `-,-´ Placeholder
-       'is_bw' => array
+       'co_fw_is_bw' => array
        (
-       	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['is_bw'],
+       	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_is_bw'],
        	'exclude'                 => true,
        	'inputType'               => 'checkbox',
        	'eval'                    => array('submitOnChange'=>true),
        	'sql'                     => "char(1) NOT NULL default ''"
        ),
-       'stamp' => array
+       'co_fw_stamp' => array
        (
-       	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['stamp'],
+       	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_stamp'],
        	'exclude'                 => true,
        	'inputType'               => 'text',
        	'eval'                    => array('placeholder'=>'designs2','maxlength'=>255, 'tl_class'=>'clr w50'),
        	'sql'                     => "varchar(255) NOT NULL default 'designs2'"
        ),
-       'topic' => array
+       'co_fw_topic' => array
        (
-          'label'                   => &$GLOBALS['TL_LANG']['tl_content']['topic'],
+          'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_topic'],
           	'default'                 => '',
           	'options'=>array(' ','abstract','animals','business','cats','city','food','night','life','fashion','people','nature','sports','technics','transport'),
           	'exclude'                 => true,
           	'inputType'               => 'select',
          
-          	'reference'               => &$GLOBALS['TL_LANG']['tl_content']['topic_options'],
+          	'reference'               => &$GLOBALS['TL_LANG']['tl_content']['co_fw_topic_options'],
           	'eval'                    => array('helpwizard'=>false, 'chosen'=>false, 'submitOnChange'=>false, 'tl_class'=>'w50'),
           	'sql'                     => "varchar(64) NOT NULL default ''"
        ),
        // `-,-´ Magellan 
-       'magellan_nav' => array
+       'co_fw_magellan_nav' => array
           		(
-          			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['magellan_nav'],
+          			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['co_fw_magellan_nav'],
           		'exclude'               => true,
           		'default'=>'',
           		    'inputType'             => 'multiColumnWizard',
@@ -653,19 +653,19 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['fields'], $fieldsSize, array
           		        (
           		           'alias' => array
           		           (
-          		               'label'     => &$GLOBALS['TL_LANG']['tl_content']['magellan_nav']['alias'],
+          		               'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_magellan_nav']['alias'],
           		               'inputType' => 'text',
           		               'eval'      => array('class'=>'tl_text_3'),
           		           ),
           		            'content' => array
           		            (
-          		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['magellan_nav']['content'],
+          		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_magellan_nav']['content'],
           		                'inputType' => 'text',
           		                'eval'      => array('class'=>'tl_text_2'),
           		            ),
           		            'class' => array
           		            (
-          		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['magellan_nav']['class'],
+          		                'label'     => &$GLOBALS['TL_LANG']['tl_content']['co_fw_magellan_nav']['class'],
           		                'inputType' => 'text',
           		                'eval'      => array('class'=>'tl_text_3'),
           		            )

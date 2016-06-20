@@ -220,35 +220,49 @@ if (TL_MODE =='BE') {
 $GLOBALS['TL_CO_HOOKS']['colSizeHook'][] = array('Hooks', 'colSizeHook');
 
 // `-,-´ SCSS Variablen 
-$GLOBALS['TL_CONFIG']['co_foundation_vars']										= array();
-$GLOBALS['TL_CONFIG']['co_foundation_vars']['primary_color']['var_scss'] 		= '$primary-color';
-$GLOBALS['TL_CONFIG']['co_foundation_vars']['primary_color']['pre_scss'] 		= '#';
-$GLOBALS['TL_CONFIG']['co_foundation_vars']['secondary_color']['var_scss'] 	= '$secondary-color';
-$GLOBALS['TL_CONFIG']['co_foundation_vars']['secondary_color']['pre_scss'] 	= '#';
-$GLOBALS['TL_CONFIG']['co_foundation_vars']['alert_color']['var_scss'] 		= '$alert-color';
-$GLOBALS['TL_CONFIG']['co_foundation_vars']['alert_color']['pre_scss'] 		= '#';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']												= array();
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['primary_color']['var_scss'] 			= '$primary-color';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['primary_color']['pre_scss'] 			= '#';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['primary_color']['post_scss'] 		= '';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['secondary_color']['var_scss'] 		= '$secondary-color';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['secondary_color']['pre_scss'] 		= '#';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['secondary_color']['post_scss'] 	= '';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['alert_color']['var_scss'] 				= '$alert-color';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['alert_color']['pre_scss'] 				= '#';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['alert_color']['post_scss'] 			= '';
 $GLOBALS['TL_CONFIG']['co_foundation_vars']['success_color']['var_scss'] 		= '$success-color';
 $GLOBALS['TL_CONFIG']['co_foundation_vars']['success_color']['pre_scss'] 		= '#';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['success_color']['post_scss'] 		= '';
 
-$GLOBALS['TL_CONFIG']['co_foundation_vars']['body_font_color']['var_scss'] 	= '$body-font-color';
-$GLOBALS['TL_CONFIG']['co_foundation_vars']['body_font_color']['pre_scss'] 	= '#';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['body_font_color']['var_scss'] 		= '$body-font-color';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['body_font_color']['pre_scss'] 		= '#';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['body_font_color']['post_scss'] 	= '';
 $GLOBALS['TL_CONFIG']['co_foundation_vars']['header_font_color']['var_scss'] 	= '$header-font-color';
 $GLOBALS['TL_CONFIG']['co_foundation_vars']['header_font_color']['pre_scss'] 	= '#';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['header_font_color']['post_scss'] 	= '';
 
-$GLOBALS['TL_CONFIG']['co_foundation_vars']['text_direction']['var_scss'] 		= '$text-direction';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['text_direction']['var_scss'] 			= '$text-direction';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['text_direction']['pre_scss'] 		= '';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['text_direction']['post_scss'] 		= '';
 
-$GLOBALS['TL_CONFIG']['co_foundation_vars']['cols']['var_scss'] 				= '$total-columns';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['cols']['var_scss'] 						= '$total-columns';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['cols']['pre_scss'] 						= '';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['cols']['post_scss'] 						= '';
 
-$GLOBALS['TL_CONFIG']['co_foundation_vars']['breakpoint']['var_scss'] 			= '$small-range-b'; //(a,b)
-$GLOBALS['TL_CONFIG']['co_foundation_vars']['breakpoint']['post_scss'] 		= 'em';
-$GLOBALS['TL_CONFIG']['co_foundation_vars']['max_width']['var_scss'] 			= '$row-width'; //$row-width: rem-calc(1000) !default;
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['breakpoint']['var_scss'] 				= '$small-range-b'; //(a,b)
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['breakpoint']['pre_scss'] 				= '';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['breakpoint']['post_scss'] 			= 'em';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['max_width']['var_scss'] 				= '$row-width'; //$row-width: rem-calc(1000) !default;
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['max_width']['pre_scss'] 				= '';
 $GLOBALS['TL_CONFIG']['co_foundation_vars']['max_width']['post_scss'] 			= 'rem';
 
-$GLOBALS['TL_CONFIG']['co_foundation_vars']['gap']['var_scss'] 				= '$column-gutter';
-$GLOBALS['TL_CONFIG']['co_foundation_vars']['gap']['post_scss'] 				= 'em';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['gap']['var_scss'] 						= '$column-gutter';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['gap']['pre_scss'] 						= '';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['gap']['post_scss'] 						= 'em';
 
-$GLOBALS['TL_CONFIG']['co_foundation_vars']['radius']['var_scss'] 				= '$global-radius';
-$GLOBALS['TL_CONFIG']['co_foundation_vars']['radius']['post_scss'] 			= 'px';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['radius']['var_scss'] 					= '$global-radius';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['radius']['pre_scss'] 					= '';
+$GLOBALS['TL_CONFIG']['co_foundation_vars']['radius']['post_scss'] 					= 'px';
 
 
 }
