@@ -1,6 +1,6 @@
 {
     "name":"designs2/codeowl_fw_foundation",
-    "description":"Codeowl Framework Foundation. The extension uses the Framework Foundation (Version 5) from Zurb. This Framework has a lot of awesome Plugins, many solutions for the daily work of a frontend designer.",
+    "description":"Codeowl Framework Foundation. The extension uses the Framework Foundation (Version 6.2.3) from Zurb. This Framework has a lot of awesome Plugins, many solutions for the daily work of a frontend designer.",
     "keywords":["contao", "foundation","framework","grid","system","zurb","responsive","codeowl"],
     "type":"contao-module",
     "license":"LGPL-3.0+",
@@ -44,7 +44,7 @@
             ]
         },
         "branch-alias": {
-        			"dev-master": "2.0.0"
+        			"dev-master": "2.0.0-dev"
         }
         
     }
