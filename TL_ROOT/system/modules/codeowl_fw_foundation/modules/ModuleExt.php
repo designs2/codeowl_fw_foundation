@@ -2,15 +2,15 @@
 /** 
  * Extension for Contao Open Source CMS
  *
- * Copyright (C) 2015 Monique Hahnefeld
+ * Copyright (C) 2016 Monique Hahnefeld
  *
  * @package codeowl_fw_foundation
- * @author  Monique Hahnefeld <info@monique-hahnefeld.de>
- * @link    http://codeowl.org
+ * @author  Monique Hahnefeld <mhahnefeld@designs2.de>
+ * @link    http://designs2.de
  * @license LGPLv3
  *
  * `-,-´
- *	( )  codeowl.org
+ *	 ( )  codeowl set
  *************************/
  
 namespace Codeowl;
@@ -73,11 +73,11 @@ class ModuleExt extends \Module
 		$objTemplate->cssID = $this->cssID; // see #4897
 
 		$levelClasses = '';
-		if (($level>1&&$level<=intval($this->dropdown_level))&&$this->navigationTpl=='nav_default_topbar') {
+		if (($level>1&&$level<=intval($this->co_fw_dropdown_level))&&$this->navigationTpl=='nav_default_topbar') {
 			$levelClasses .= $addToLevel .' ';
 		}
 		if ($level==1&&$this->navigationTpl=='nav_default_topbar') {
-			$levelClasses .= $this->offcanvas_align .' ';
+			$levelClasses .= $this->co_fw_offcanvas_align .' ';
 		}
 		$levelClasses .= 'level_' . $level++;
 		$objTemplate->level=$levelClasses;

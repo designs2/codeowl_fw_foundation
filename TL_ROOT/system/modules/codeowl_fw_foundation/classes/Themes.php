@@ -25,17 +25,18 @@ class Themes extends \Backend
 		
 		$activeRecordRow  = $dc->__get('activeRecord')->row();
 		$folder_url 			= $activeRecordRow['theme_folder'];
-		$savePath 				= TL_ROOT.TL_PATH.'/'.$folder_url;
+		$savePath 				= TL_ROOT.'/'.$folder_url;
 		$settingsFile   		= '_settings.scss';
 		$configContentFile 	= str_replace(' ', '-',strtolower($activeRecordRow['name'])).'.scss';
 		
-		require_once('../config/framework.php'); 
+		require_once(TL_ROOT.'/system/modules/codeowl_fw_foundation/config/framework.php'); 
 		
 		if (!file_exists($savePath)){
 			mkdir($savePath);
 		}
 
-		$settingsContent 	  	= '// Contao Open Source CMS, (c) 2014 Monique Hahnefeld, LGPL license'."\r\n\r\n\t".'@import "../foundation/scss/foundation/functions";'."\r\n";
+		$settingsContent 	  	= '// Contao Open Source CMS, (c) 2014 Monique Hahnefeld, LGPL license'."\r\n\r\n\t"
+		.'@import '. "\t'".$fwPathToFolder ."/scss/util/util';\r\n";
 		$configContent 	   		= '
 		// Foundation by ZURB
 		// foundation.zurb.com
@@ -58,10 +59,10 @@ class Themes extends \Backend
 		$arrScssVariables		= \Config::get('co_foundation_vars');
 		
 		$arrConfigFiles 			= array();
-		$arrConfigFiles[]  		= 'settings';
+		$arrConfigFiles[]  		=  "\t\"".'settings'."\"\r\n";
 		foreach ($fwModulePackages as $name => $fwModule ){
 			if($activeRecordRow[$name]){
-				$arrConfigFiles[]   = "\t\'".$fwPathToFolder ."/scss/".$fwModule[0]."\'\r\n";	
+				$arrConfigFiles[]   = "\t'".$fwPathToFolder ."/scss/".$fwModule[0]."'\r\n";	
 			}
 		}
 
@@ -70,7 +71,7 @@ class Themes extends \Backend
 		
 		$arrSettingVariables 	= array();
 		foreach ($arrScssVariables as $field => $settings) {
-			$arrSettingVariables[] 			= "\t".$settings['var_scss'].': '.$settings['pre_scss'].$activeRecordRow[$field].$settings['post_scss']."\r\n";	
+			$arrSettingVariables[] 			= "\t".$settings['var_scss'].': '.$settings['pre_scss'].$activeRecordRow[$field].$settings['post_scss'].";\r\n";	
 		}
 		
 		foreach ($fwSettingTextfields as $area){

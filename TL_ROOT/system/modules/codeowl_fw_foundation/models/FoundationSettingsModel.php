@@ -1,5 +1,5 @@
 <?php
- /** 
+/** 
  * Extension for Contao Open Source CMS
  *
  * Copyright (C) 2016 Monique Hahnefeld

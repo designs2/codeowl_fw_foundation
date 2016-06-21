@@ -89,8 +89,8 @@ class ModuleOffcanvas extends \ModuleExt
 		$this->Template->items = $this->renderNavigationFTC($trail[$level], 1, $host, $lang);
 
 		// `-,-´ css and attributes
-		$cssFormation 					= new OutputGridVars;
-		$objEl 							= $cssFormation->design_elements($this);
+		$cssClassSet 					= new OutputGridVars;
+		$objEl 							= $cssClassSet->design_elements($this);
 		$this->Template->ftc_classes 	= $objEl->ftc_classes;
 		$this->Template->ftcID 			= $objEl->ftcID;
 		$this->Template->data_attr 		= $objEl->data_attr;

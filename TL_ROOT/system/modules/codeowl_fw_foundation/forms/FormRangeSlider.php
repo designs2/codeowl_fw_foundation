@@ -2,15 +2,15 @@
 /** 
  * Extension for Contao Open Source CMS
  *
- * Copyright (C) 2015 Monique Hahnefeld
+ * Copyright (C) 2016 Monique Hahnefeld
  *
  * @package codeowl_fw_foundation
- * @author  Monique Hahnefeld <info@monique-hahnefeld.de>
- * @link    http://codeowl.org
+ * @author  Monique Hahnefeld <mhahnefeld@designs2.de>
+ * @link    http://designs2.de
  * @license LGPLv3
  *
  * `-,-´
- *	( )  codeowl.org
+ *	 ( )  codeowl set
  *************************/
 
 namespace Codeowl;
@@ -79,19 +79,10 @@ class FormRangeSlider extends \Widget
 	// `-,-´ Parse the template file and return it as string
 	public function parse($arrAttributes=null)
 	{
-			
-		// `-,-´ css and attributes
-		// $cssFormation 					= new OutputGridVars;
-		// $objEl 							= $cssFormation->design_elements($this);
-		// $this->Template->ftc_classes 	= $objEl->ftc_classes;
-		// $this->Template->ftcID 			= $objEl->ftcID;
-		// $this->Template->data_attr 		= $objEl->data_attr;
-		// $this->Template->class 			= $objEl->ftc_classes;
-		// $this->Template->cssID 			= $objEl->ftcID;
-
+		
 		$Output 						= new OutputPresets;
 		$this->rs_id 					= 'range_value_'.$this->id;
-        $this->ftc_rs_classes 			= $Output->splitArr($this->rs_classes);
+        $this->ftc_rs_classes 			= $Output->splitArr($this->co_fw_rs_classes);
         $this->type 					= 'hidden';
 	
 		return parent::parse($arrAttributes);
