@@ -23,7 +23,7 @@
 */
 
 // `-,-´  @string sass, @string js, @array utils
-$fwPathToFolder 					= TL_ROOT.TL_PATH."/system/modules/codeowl_fw_foundation/assets/foundation";
+$fwPathToFolder 					= TL_ROOT."/system/modules/codeowl_fw_foundation/assets/foundation";
 $fwModuleSassPrefix 				= 'foundation-';
 $fwModuleJsPrefix 					= 'foundation.';
 $fwModuleJsUtilsPrefix		 	= 'foundation.util.';
@@ -56,7 +56,7 @@ $fwModulePackages 				=  array(
 											'media_object' 			=> array('components/media_object'),
 											'offcanvas_js' 				=> array('components/off-canvas','offcanvas'),
 											'reveal_js' 					=> array('components/reveal','reveal',array('box','motion','triggers','mediaQuery','keyboard')),
-											'table' 						=> array('components/table'),
+											'table_fw' 						=> array('components/table'),
 											//'table_js' 					=> array('table_js',false), // explanation of table js
 											'badge' 						=> array('components/badge'),
 											'flex_video' 				=> array('components/flex-video'),

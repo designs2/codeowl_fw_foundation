@@ -1,19 +1,496 @@
 <?php
-/** 
+ /** 
  * Extension for Contao Open Source CMS
  *
  * Copyright (C) 2016 Monique Hahnefeld
  *
  * @package codeowl_fw_foundation
- * @author  Monique Hahnefeld <info@monique-hahnefeld.de>
- * @link    http://designs2.org
+ * @author  Monique Hahnefeld <mhahnefeld@designs2.de>
+ * @link    http://designs2.de
  * @license LGPLv3
  *
  * `-,-´
- *	 ( )  codeowl.org
+ *	 ( )  codeowl set
  *************************/
  
- 
+// `-,-´ Init default vars of framework 
+$general_vars_default = '
+// Globale
+$global-font-size: 100%;
+$global-width: rem-calc(1200);
+$global-lineheight: 1.5;
+$foundation-palette: (
+  primary: #2199e8,
+  secondary: #777,
+  success: #3adb76,
+  warning: #ffae00,
+  alert: #ec5840,
+);
+$light-gray: #e6e6e6;
+$medium-gray: #cacaca;
+$dark-gray: #8a8a8a;
+$black: #0a0a0a;
+$white: #fefefe;
+$body-background: $white;
+$body-font-color: $black;
+$body-font-family: \'Helvetica Neue\', Helvetica, Roboto, Arial, sans-serif;
+$body-antialiased: true;
+$global-margin: 1rem;
+$global-padding: 1rem;
+$global-weight-normal: normal;
+$global-weight-bold: bold;
+$global-radius: 0;
+$global-text-direction: ltr;
+$global-flexbox: false;
+$print-transparent-backgrounds: true;
+
+@include add-foundation-colors;
+
+// Breakpoints
+
+$breakpoints: (
+  small: 0,
+  medium: 640px,
+  large: 1024px,
+  xlarge: 1200px,
+  xxlarge: 1440px,
+);
+$breakpoint-classes: (small medium large);
+
+// The Grid
+
+$grid-row-width: $global-width;
+$grid-column-count: 12;
+$grid-column-gutter: (
+  small: 20px,
+  medium: 30px,
+);
+$grid-column-align-edge: true;
+$block-grid-max: 8;
+
+// Forms
+
+$fieldset-border: 1px solid $medium-gray;
+$fieldset-padding: rem-calc(20);
+$fieldset-margin: rem-calc(18 0);
+$legend-padding: rem-calc(0 3);
+$form-spacing: rem-calc(16);
+$helptext-color: $black;
+$helptext-font-size: rem-calc(13);
+$helptext-font-style: italic;
+$input-prefix-color: $black;
+$input-prefix-background: $light-gray;
+$input-prefix-border: 1px solid $medium-gray;
+$input-prefix-padding: 1rem;
+$form-label-color: $black;
+$form-label-font-size: rem-calc(14);
+$form-label-font-weight: $global-weight-normal;
+$form-label-line-height: 1.8;
+$select-background: $white;
+$select-triangle-color: $dark-gray;
+$select-radius: $global-radius;
+$input-color: $black;
+$input-placeholder-color: $medium-gray;
+$input-font-family: inherit;
+$input-font-size: rem-calc(16);
+$input-background: $white;
+$input-background-focus: $white;
+$input-background-disabled: $light-gray;
+$input-border: 1px solid $medium-gray;
+$input-border-focus: 1px solid $dark-gray;
+$input-shadow: inset 0 1px 2px rgba($black, 0.1);
+$input-shadow-focus: 0 0 5px $medium-gray;
+$input-cursor-disabled: not-allowed;
+$input-transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+$input-number-spinners: true;
+$input-radius: $global-radius;
+
+';
+
+$typography_vars_default = "
+// Base Typography
+
+$header-font-family: $body-font-family;
+$header-font-weight: $global-weight-normal;
+$header-font-style: normal;
+$font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
+$header-sizes: (
+  small: (
+    'h1': 24,
+    'h2': 20,
+    'h3': 19,
+    'h4': 18,
+    'h5': 17,
+    'h6': 16,
+  ),
+  medium: (
+    'h1': 48,
+    'h2': 40,
+    'h3': 31,
+    'h4': 25,
+    'h5': 20,
+    'h6': 16,
+  ),
+);
+$header-color: inherit;
+$header-lineheight: 1.4;
+$header-margin-bottom: 0.5rem;
+$header-text-rendering: optimizeLegibility;
+$small-font-size: 80%;
+$header-small-font-color: $medium-gray;
+$paragraph-lineheight: 1.6;
+$paragraph-margin-bottom: 1rem;
+$paragraph-text-rendering: optimizeLegibility;
+$code-color: $black;
+$code-font-family: $font-family-monospace;
+$code-font-weight: $global-weight-normal;
+$code-background: $light-gray;
+$code-border: 1px solid $medium-gray;
+$code-padding: rem-calc(2 5 1);
+$anchor-color: $primary-color;
+$anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
+$anchor-text-decoration: none;
+$anchor-text-decoration-hover: none;
+$hr-width: $global-width;
+$hr-border: 1px solid $medium-gray;
+$hr-margin: rem-calc(20) auto;
+$list-lineheight: $paragraph-lineheight;
+$list-margin-bottom: $paragraph-margin-bottom;
+$list-style-type: disc;
+$list-style-position: outside;
+$list-side-margin: 1.25rem;
+$list-nested-side-margin: 1.25rem;
+$defnlist-margin-bottom: 1rem;
+$defnlist-term-weight: $global-weight-bold;
+$defnlist-term-margin-bottom: 0.3rem;
+$blockquote-color: $dark-gray;
+$blockquote-padding: rem-calc(9 20 0 19);
+$blockquote-border: 1px solid $medium-gray;
+$cite-font-size: rem-calc(13);
+$cite-color: $dark-gray;
+$keystroke-font: $font-family-monospace;
+$keystroke-color: $black;
+$keystroke-background: $light-gray;
+$keystroke-padding: rem-calc(2 4 0);
+$keystroke-radius: $global-radius;
+$abbr-underline: 1px dotted $black;
+
+// Typography Helpers
+
+$lead-font-size: $global-font-size * 1.25;
+$lead-lineheight: 1.6;
+$subheader-lineheight: 1.4;
+$subheader-color: $dark-gray;
+$subheader-font-weight: $global-weight-normal;
+$subheader-margin-top: 0.2rem;
+$subheader-margin-bottom: 0.5rem;
+$stat-font-size: 2.5rem;
+";
+
+$controls_vars_default = "
+// Button
+
+$button-padding: 0.85em 1em;
+$button-margin: 0 0 $global-margin 0;
+$button-fill: solid;
+$button-background: $primary-color;
+$button-background-hover: scale-color($button-background, $lightness: -15%);
+$button-color: $white;
+$button-color-alt: $black;
+$button-radius: $global-radius;
+$button-sizes: (
+  tiny: 0.6rem,
+  small: 0.75rem,
+  default: 0.9rem,
+  large: 1.25rem,
+);
+$button-opacity-disabled: 0.25;
+
+// Button Group
+
+$buttongroup-margin: 1rem;
+$buttongroup-spacing: 1px;
+$buttongroup-child-selector: '.button';
+$buttongroup-expand-max: 6;
+
+// Close Button
+
+$closebutton-position: right top;
+$closebutton-offset-horizontal: 1rem;
+$closebutton-offset-vertical: 0.5rem;
+$closebutton-size: 2em;
+$closebutton-lineheight: 1;
+$closebutton-color: $dark-gray;
+$closebutton-color-hover: $black;
+
+// Slider
+
+$slider-width-vertical: 0.5rem;
+$slider-transition: all 0.2s ease-in-out;
+$slider-height: 0.5rem;
+$slider-background: $light-gray;
+$slider-fill-background: $medium-gray;
+$slider-handle-height: 1.4rem;
+$slider-handle-width: 1.4rem;
+$slider-handle-background: $primary-color;
+$slider-opacity-disabled: 0.25;
+$slider-radius: $global-radius;
+
+// Switch
+
+$switch-background: $medium-gray;
+$switch-background-active: $primary-color;
+$switch-height: 2rem;
+$switch-height-tiny: 1.5rem;
+$switch-height-small: 1.75rem;
+$switch-height-large: 2.5rem;
+$switch-radius: $global-radius;
+$switch-margin: $global-margin;
+$switch-paddle-background: $white;
+$switch-paddle-offset: 0.25rem;
+$switch-paddle-radius: $global-radius;
+$switch-paddle-transition: all 0.25s ease-out;
+
+";
+
+$navigation_vars_default = "
+// Accordion Menu
+
+$accordionmenu-arrows: true;
+$accordionmenu-arrow-color: $primary-color;
+
+// Breadcrumbs
+
+$breadcrumbs-margin: 0 0 $global-margin 0;
+$breadcrumbs-item-font-size: rem-calc(11);
+$breadcrumbs-item-color: $primary-color;
+$breadcrumbs-item-color-current: $black;
+$breadcrumbs-item-color-disabled: $medium-gray;
+$breadcrumbs-item-margin: 0.75rem;
+$breadcrumbs-item-uppercase: true;
+$breadcrumbs-item-slash: true;
+
+// Drilldown
+
+$drilldown-transition: transform 0.15s linear;
+$drilldown-arrows: true;
+$drilldown-arrow-color: $primary-color;
+$drilldown-background: $white;
+
+// Dropdown Menu
+
+$dropdownmenu-arrows: true;
+$dropdownmenu-arrow-color: $anchor-color;
+$dropdownmenu-min-width: 200px;
+$dropdownmenu-background: $white;
+$dropdownmenu-border: 1px solid $medium-gray;
+
+// Menu
+
+$menu-margin: 0;
+$menu-margin-nested: 1rem;
+$menu-item-padding: 0.7rem 1rem;
+$menu-item-color-active: $white;
+$menu-item-background-active: map-get($foundation-palette, primary);
+$menu-icon-spacing: 0.25rem;
+
+// Pagination
+
+$pagination-font-size: rem-calc(14);
+$pagination-margin-bottom: $global-margin;
+$pagination-item-color: $black;
+$pagination-item-padding: rem-calc(3 10);
+$pagination-item-spacing: rem-calc(1);
+$pagination-radius: $global-radius;
+$pagination-item-background-hover: $light-gray;
+$pagination-item-background-current: $primary-color;
+$pagination-item-color-current: foreground($pagination-item-background-current);
+$pagination-item-color-disabled: $medium-gray;
+$pagination-ellipsis-color: $black;
+$pagination-mobile-items: false;
+$pagination-arrows: true;
+
+// Top Bar
+
+$topbar-padding: 0.5rem;
+$topbar-background: $light-gray;
+$topbar-submenu-background: $topbar-background;
+$topbar-title-spacing: 1rem;
+$topbar-input-width: 200px;
+$topbar-unstack-breakpoint: medium;
+";
+
+$containers_vars_default = "
+// Accordion
+
+$accordion-background: $white;
+$accordion-plusminus: true;
+$accordion-item-color: foreground($accordion-background, $primary-color);
+$accordion-item-background-hover: $light-gray;
+$accordion-item-padding: 1.25rem 1rem;
+$accordion-content-background: $white;
+$accordion-content-border: 1px solid $light-gray;
+$accordion-content-color: foreground($accordion-content-background, $body-font-color);
+$accordion-content-padding: 1rem;
+
+// Callout
+
+$callout-background: $white;
+$callout-background-fade: 85%;
+$callout-border: 1px solid rgba($black, 0.25);
+$callout-margin: 0 0 1rem 0;
+$callout-padding: 1rem;
+$callout-font-color: $body-font-color;
+$callout-font-color-alt: $body-background;
+$callout-radius: $global-radius;
+$callout-link-tint: 30%;
+
+// Dropdown
+
+$dropdown-padding: 1rem;
+$dropdown-border: 1px solid $medium-gray;
+$dropdown-font-size: 1rem;
+$dropdown-width: 300px;
+$dropdown-radius: $global-radius;
+$dropdown-sizes: (
+  tiny: 100px,
+  small: 200px,
+  large: 400px,
+);
+
+// Media Object
+
+$mediaobject-margin-bottom: $global-margin;
+$mediaobject-section-padding: $global-padding;
+$mediaobject-image-width-stacked: 100%;
+
+// Off-canvas
+
+$offcanvas-size: 250px;
+$offcanvas-background: $light-gray;
+$offcanvas-zindex: -1;
+$offcanvas-transition-length: 0.5s;
+$offcanvas-transition-timing: ease;
+$offcanvas-fixed-reveal: true;
+$offcanvas-exit-background: rgba($white, 0.25);
+$maincontent-class: 'off-canvas-content';
+$maincontent-shadow: 0 0 10px rgba($black, 0.5);
+
+// Reveal
+
+$reveal-background: $white;
+$reveal-width: 600px;
+$reveal-max-width: $global-width;
+$reveal-padding: $global-padding;
+$reveal-border: 1px solid $medium-gray;
+$reveal-radius: $global-radius;
+$reveal-zindex: 1005;
+$reveal-overlay-background: rgba($black, 0.45);
+
+";
+
+$modal_vars_default = "
+// Table
+
+$table-background: $white;
+$table-color-scale: 5%;
+$table-border: 1px solid smart-scale($table-background, $table-color-scale);
+$table-padding: rem-calc(8 10 10);
+$table-hover-scale: 2%;
+$table-row-hover: darken($table-background, $table-hover-scale);
+$table-row-stripe-hover: darken($table-background, $table-color-scale + $table-hover-scale);
+$table-striped-background: smart-scale($table-background, $table-color-scale);
+$table-stripe: even;
+$table-head-background: smart-scale($table-background, $table-color-scale / 2);
+$table-foot-background: smart-scale($table-background, $table-color-scale);
+$table-head-font-color: $body-font-color;
+$show-header-for-stacked: false;
+";
+
+$media_vars_default = "
+// Badge
+
+$badge-background: $primary-color;
+$badge-color: foreground($badge-background);
+$badge-padding: 0.3em;
+$badge-minwidth: 2.1em;
+$badge-font-size: 0.6rem;
+
+// Flex Video
+
+$flexvideo-margin-bottom: rem-calc(16);
+$flexvideo-ratio: 4 by 3;
+$flexvideo-ratio-widescreen: 16 by 9;
+
+// Label
+
+$label-background: $primary-color;
+$label-color: foreground($label-background);
+$label-font-size: 0.8rem;
+$label-padding: 0.33333rem 0.5rem;
+$label-radius: $global-radius;
+
+// Orbit
+
+$orbit-bullet-background: $medium-gray;
+$orbit-bullet-background-active: $dark-gray;
+$orbit-bullet-diameter: 1.2rem;
+$orbit-bullet-margin: 0.1rem;
+$orbit-bullet-margin-top: 0.8rem;
+$orbit-bullet-margin-bottom: 0.8rem;
+$orbit-caption-background: rgba($black, 0.5);
+$orbit-caption-padding: 1rem;
+$orbit-control-background-hover: rgba($black, 0.5);
+$orbit-control-padding: 1rem;
+$orbit-control-zindex: 10;
+
+";
+
+$carousel_vars_default = "
+// Progress Bar
+
+$progress-height: 1rem;
+$progress-background: $medium-gray;
+$progress-margin-bottom: $global-margin;
+$progress-meter-background: $primary-color;
+$progress-radius: $global-radius;
+
+// Thumbnail
+
+$thumbnail-border: solid 4px $white;
+$thumbnail-margin-bottom: $global-margin;
+$thumbnail-shadow: 0 0 0 1px rgba($black, 0.2);
+$thumbnail-shadow-hover: 0 0 6px 1px rgba($primary-color, 0.5);
+$thumbnail-transition: box-shadow 200ms ease-out;
+$thumbnail-radius: $global-radius;
+
+// Tooltip
+
+$has-tip-font-weight: $global-weight-bold;
+$has-tip-border-bottom: dotted 1px $dark-gray;
+$tooltip-background-color: $black;
+$tooltip-color: $white;
+$tooltip-padding: 0.75rem;
+$tooltip-font-size: $small-font-size;
+$tooltip-pip-width: 0.75rem;
+$tooltip-pip-height: $tooltip-pip-width * 0.866;
+$tooltip-radius: $global-radius;
+
+
+";
+
+$plugins_vars_default = "
+// Abide
+
+$abide-inputs: true;
+$abide-labels: true;
+$input-background-invalid: map-get($foundation-palette, alert);
+$form-label-color-invalid: map-get($foundation-palette, alert);
+$input-error-color: map-get($foundation-palette, alert);
+$input-error-font-size: rem-calc(12);
+$input-error-font-weight: $global-weight-bold;
+
+";
 // `-,-´  helper for dca container
 function createCheckboxArray($name,$onchange){
 	
@@ -21,10 +498,10 @@ function createCheckboxArray($name,$onchange){
 				(
 					'label'                   		=> &$GLOBALS['TL_LANG']['tl_co_foundation_settings'][$name],
 					'exclude'                	=> true,
-					'default'               		=> '1',
+					'default'               		=> ($onchange)?'':'1',
 					'inputType'               	=> 'checkbox',
 					'eval'                    		=> array('tl_class'=>'clr w25', 'submitOnChange' => $onchange),
-					'sql'                     		=> "char(1) NOT NULL default ''"
+					'sql'                     		=> ($onchange)?"char(1) NOT NULL default ''":"char(1) NOT NULL default '1'"
 				);
 }
 
@@ -38,7 +515,7 @@ function createTextareaArray($name,$default){
 					'exclude'                 	=> true,
 					'default'						=> $default,
 					'inputType'               	=> 'textarea',	
-					'eval'                    		=> array('maxlength'=>3000,'tl_class'=>'w75','cols'=>30,'rows'=>4),
+					'eval'                    		=> array('maxlength'=>4000,'tl_class'=>'w75','cols'=>30,'rows'=>4),
 					'sql'                     		=> "text NULL"
 				);
 }
@@ -145,7 +622,7 @@ $GLOBALS['TL_DCA']['tl_co_foundation_settings'] = array
 		{controls_legend},button, button_group, close_button, slider_js, switch, add_controls_vars;
 		{navigation_legend},overview, menu, dropdown_menu_js, drilldown_menu_js, accordion_menu_js, top_bar, responsive_navigation, magellan_js, pagination, breadcrumbs, add_navigation_vars;
 		{containers_legend},accordion_js, callout, dropdown_js, media_object, offcanvas_js, reveal_js, add_containers_vars;
-		{modal_legend},table, table_js, add_modal_vars;
+		{modal_legend},table_fw, table_js, add_modal_vars;
 		{media_legend},badge, flex_video, label, orbit_js, add_media_vars;
 		{carousel_legend},progressbar, thumbnail, tooltip_js, add_carousel_vars;
 		{plugins_legend},abide_pi, equilizer_pi, interchange_pi, toggler_pi, sticky_pi, add_plugins_vars;'
@@ -286,7 +763,6 @@ $GLOBALS['TL_DCA']['tl_co_foundation_settings'] = array
 			'eval'                    => array('maxlength'=>32,'tl_class'=>'w50'),
 			'sql'                     => "char(16) NOT NULL default 'ltr'"
 		),
-
 		'icon_fonts' => array
 		       (
 		           'label'                 => &$GLOBALS['TL_LANG']['tl_co_foundation_settings']['icon_fonts'],
@@ -360,128 +836,8 @@ $GLOBALS['TL_DCA']['tl_co_foundation_settings'] = array
 			'eval'                    => array('placeholder'=>'value in px, e.g. 3','maxlength'=>32,'tl_class'=>'w50'),
 			'sql'                     => "varchar(32) NOT NULL default ''"
 		),
-		
-		'typografie' => array
-				(
-					'label'                   => &$GLOBALS['TL_LANG']['tl_co_foundation_settings']['typografie'],
-					'exclude'                 => true,
-					'default'               => '1',
-					'inputType'               => 'checkbox',
-					'eval'                    => array('tl_class'=>'clr w25'),
-					'sql'                     => "char(1) NOT NULL default ''"
-				),
-		'typografie_vars' => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_co_foundation_settings']['typografie_vars'],
-			'pre_scss'                   => &$GLOBALS['TL_LANG']['tl_co_foundation_settings']['typografie_vars']['pre_scss'],
-			'post_scss'                   => &$GLOBALS['TL_LANG']['tl_co_foundation_settings']['typografie_vars']['post_scss'],
-			'exclude'                 => true,
-			'default'				=>'
-// TYPOGRAPHY
-// $include-html-type-classes: $include-html-classes;
-// We use these to control header font styles
-// $header-font-family: $body-font-family;
-// $header-font-weight: normal;
-// $header-font-style: normal;
-// $header-font-color: #222;
-// $header-line-height: 1.4;
-// $header-top-margin: .2rem;
-// $header-bottom-margin: .5rem;
-// $header-text-rendering: optimizeLegibility;
 
-// We use these to control header font sizes
-// $h1-font-size: rem-calc(44);
-// $h2-font-size: rem-calc(37);
-// $h3-font-size: rem-calc(27);
-// $h4-font-size: rem-calc(23);
-// $h5-font-size: rem-calc(18);
-// $h6-font-size: 1rem;
-
-// These control how subheaders are styled.
-// $subheader-line-height: 1.4;
-// $subheader-font-color: scale-color($header-font-color, $lightness: 35%);
-// $subheader-font-weight: normal;
-// $subheader-top-margin: .2rem;
-// $subheader-bottom-margin: .5rem;
-
-// A general <small> styling
-// $small-font-size: 60%;
-// $small-font-color: scale-color($header-font-color, $lightness: 35%);
-
-// We use these to style paragraphs
-// $paragraph-font-family: inherit;
-// $paragraph-font-weight: normal;
-// $paragraph-font-size: 1rem;
-// $paragraph-line-height: 1.6;
-// $paragraph-margin-bottom: rem-calc(20);
-// $paragraph-aside-font-size: rem-calc(14);
-// $paragraph-aside-line-height: 1.35;
-// $paragraph-aside-font-style: italic;
-// $paragraph-text-rendering: optimizeLegibility;
-
-// We use these to style <code> tags
-// $code-color: scale-color($alert-color, $lightness: -27%);
-// $code-font-family: Consolas, "Liberation Mono", Courier, monospace;
-// $code-font-weight: bold;
-
-// We use these to style anchors
-// $anchor-text-decoration: none;
-// $anchor-text-decoration-hover: none;
-// $anchor-font-color: $primary-color;
-// $anchor-font-color-hover: scale-color($primary-color, $lightness: -14%);
-
-// We use these to style the <hr> element
-// $hr-border-width: 1px;
-// $hr-border-style: solid;
-// $hr-border-color: #ddd;
-// $hr-margin: rem-calc(20);
-
-// We use these to style lists
-// $list-font-family: $paragraph-font-family;
-// $list-font-size: $paragraph-font-size;
-// $list-line-height: $paragraph-line-height;
-// $list-margin-bottom: $paragraph-margin-bottom;
-// $list-style-position: outside;
-// $list-side-margin: 1.1rem;
-// $list-ordered-side-margin: 1.4rem;
-// $list-side-margin-no-bullet: 0;
-// $list-nested-margin: rem-calc(20);
-// $definition-list-header-weight: bold;
-// $definition-list-header-margin-bottom: .3rem;
-// $definition-list-margin-bottom: rem-calc(12);
-
-// We use these to style blockquotes
-// $blockquote-font-color: scale-color($header-font-color, $lightness: 35%);
-// $blockquote-padding: rem-calc(9 20 0 19);
-// $blockquote-border: 1px solid #ddd;
-// $blockquote-cite-font-size: rem-calc(13);
-// $blockquote-cite-font-color: scale-color($header-font-color, $lightness: 23%);
-// $blockquote-cite-link-color: $blockquote-cite-font-color;
-
-// Acronym styles
-// $acronym-underline: 1px dotted #ddd;
-// We use these to control padding and margin
-// $microformat-padding: rem-calc(10 12);
-// $microformat-margin: rem-calc(0 0 20 0);
-// We use these to control the border styles
-// $microformat-border-width: 1px;
-// $microformat-border-style: solid;
-// $microformat-border-color: #ddd;
-// We use these to control full name font styles
-// $microformat-fullname-font-weight: bold;
-// $microformat-fullname-font-size: rem-calc(15);
-// We use this to control the summary font styles
-// $microformat-summary-font-weight: bold;
-// We use this to control abbr padding
-// $microformat-abbr-padding: rem-calc(0 1);
-// We use this to control abbr font styles
-// $microformat-abbr-font-weight: bold;
-// $microformat-abbr-font-decoration: none;
-',
-			'inputType'               => 'textarea',	
-			'eval'                    => array('maxlength'=>4000,'tl_class'=>'w75','cols'=>30,'rows'=>4),
-			'sql'                     => "text NULL"
-		),
+	
 		/*
 		*
 		*****
@@ -517,7 +873,7 @@ $GLOBALS['TL_DCA']['tl_co_foundation_settings'] = array
 		'media_object' 				=> createCheckboxArray('media_object',false),
 		'offcanvas_js' 				=> createCheckboxArray('offcanvas_js',false),
 		'reveal_js' 				=> createCheckboxArray('reveal_js',false),
-		'table' 					=> createCheckboxArray('table',false),
+		'table_fw' 					=> createCheckboxArray('table_fw',false),
 		'table_js' 					=> createCheckboxArray('table_js',false),
 		'badge' 					=> createCheckboxArray('badge',false),
 		'flex_video' 				=> createCheckboxArray('flex_video',false),
@@ -537,7 +893,7 @@ $GLOBALS['TL_DCA']['tl_co_foundation_settings'] = array
 
 		// `-,-´ add variables checkboxes
 		'add_general_vars' 		=> createCheckboxArray('add_general_vars',true),
-		'add_typography_vars' 	=> createCheckboxArray('add_typography_vars',true),
+		'add_typography_vars' => createCheckboxArray('add_typography_vars',true),
 		'add_controls_vars' 	=> createCheckboxArray('add_controls_vars',true),
 		'add_navigation_vars' 	=> createCheckboxArray('add_navigation_vars',true),
 		'add_containers_vars' 	=> createCheckboxArray('add_containers_vars',true),
@@ -549,42 +905,43 @@ $GLOBALS['TL_DCA']['tl_co_foundation_settings'] = array
 		// `-,-´ Textareas with variables
 		'general_vars' 		=> createTextareaArray(
 								'general_vars',
-								'true'
+								$general_vars_default
 								),
 		'typography_vars' 	=> createTextareaArray(
 								'typography_vars',
-								'true'
+								$typography_vars_default
 								),
 		'controls_vars' 	=> createTextareaArray(
 								'controls_vars',
-								'true'
+								$controls_vars_default
 								),
 		'navigation_vars' 	=> createTextareaArray(
 								'navigation_vars',
-								'true'
+								$navigation_vars_default
 								),
 		'containers_vars' 	=> createTextareaArray(
 								'containers_vars',
-								'true'
+								$containers_vars_default
 								),
 		'modal_vars' 		=> createTextareaArray(
 								'modal_vars',
-								'true'
+								$modal_vars_default
 								),
 		'media_vars' 		=> createTextareaArray(
 								'media_vars',
-								'true'
+								$media_vars_default
 								),
 		'carousel_vars' 	=> createTextareaArray(
 								'carousel_vars',
-								'true'
+								$carousel_vars_default
 								),
 		'plugins_vars' 		=> createTextareaArray(
 								'plugins_vars',
-								'true'
+								$plugins_vars_default
 								)
 	)
 );
+
 
 // `-,-´ Class tl_co_foundation_settings
 class tl_co_foundation_settings extends Backend
