@@ -16,8 +16,8 @@
  $palettes 			= $GLOBALS['TL_DCA']['tl_layout']['palettes']['default'];
  $anchor  			= '{jquery_legend},addJQuery;';
  $palettes_ftc  	= str_replace($anchor,",{co_fw_settings_legend},co_fw_add_foundation;".$anchor,$palettes);
+ $GLOBALS['TL_DCA']['tl_layout']['palettes']['__selector__'][] 					=  'co_fw_add_foundation';
  $GLOBALS['TL_DCA']['tl_layout']['palettes']['default'] 							= $palettes_ftc;
- $GLOBALS['TL_DCA']['tl_layout']['palettes']['__selector__'][] 					= 'co_fw_add_foundation';
  $GLOBALS['TL_DCA']['tl_layout']['subpalettes']['co_fw_add_foundation'] = 'co_fw_use_offcanvas,co_fw_setting';
 
 
@@ -43,11 +43,12 @@
 	'co_fw_setting' => array
 	(
 		'label'                   		 => &$GLOBALS['TL_LANG']['tl_layout']['co_fw_setting'],
-			'default'                  => '',
       		'exclude'                 => true,	
+      		'options' => array(),
       		'inputType'              => 'select',
-      		'eval'                    	=> array('includeBlankOption' => true, 'helpwizard'=>false, 'chosen'=>false, 'submitOnChange'=>false, 'tl_class'=>'w50'),
-			'options_callback' => array(array('co_fw_tl_layout','getFWSettings')),
+      		'eval'                    	=> array('includeBlankOption' => true, 'chosen'=>false
+      		, 'tl_class'=>'w50'),
+			'options_callback' => array('co_fw_tl_layout','getFWSettings'),
 			'sql'                     => "varchar(128) NOT NULL default ''"
 	)
 

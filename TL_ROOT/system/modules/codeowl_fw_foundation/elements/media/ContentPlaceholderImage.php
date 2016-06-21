@@ -1,16 +1,16 @@
 <?php
-/** 
+ /** 
  * Extension for Contao Open Source CMS
  *
- * Copyright (C) 2015 Monique Hahnefeld
+ * Copyright (C) 2016 Monique Hahnefeld
  *
  * @package codeowl_fw_foundation
- * @author  Monique Hahnefeld <info@monique-hahnefeld.de>
- * @link    http://codeowl.org
+ * @author  Monique Hahnefeld <mhahnefeld@designs2.de>
+ * @link    http://designs2.de
  * @license LGPLv3
  *
  * `-,-´
- *	( )  codeowl.org
+ *	 ( )  codeowl set
  *************************/
 
 namespace Codeowl;
@@ -34,7 +34,7 @@ class ContentPlaceholderImage extends \ContentElement
 		$this->margin = 'margin:'.$imagemargin['top'].$imagemargin['unit'].' '.$imagemargin['right'].$imagemargin['unit'].' '.$imagemargin['bottom'].$imagemargin['unit'].' '.$imagemargin['left'].$imagemargin['unit'].'; ';
 		
 		$is_bw = ($this->is_bw) ? 'g/' : '' ;
-		$this->singleSRC ='http://lorempixel.com/'.$is_bw.''.$sizeStr[0].'/'.$sizeStr[1].'/'.$this->topic.'/'.$this->stamp.'/'; //$objFile->path;
+		$this->singleSRC ='http://lorempixel.com/'.$is_bw.''.$sizeStr[0].'/'.$sizeStr[1].'/'.$this->co_fw_topic.'/'.$this->co_fw_stamp.'/'; //$objFile->path;
 		return parent::generate();
 	}
 
@@ -42,8 +42,8 @@ class ContentPlaceholderImage extends \ContentElement
 	protected function compile()
 	{
 		// `-,-´ css and attributes
-		$cssFormation 					= new OutputGridVars;
-		$objEl 							= $cssFormation->design_elements($this);
+		$cssClassSet 					= new OutputGridVars;
+		$objEl 							= $cssClassSet->design_elements($this);
 		$this->Template->ftc_classes 	= $objEl->ftc_classes;
 		$this->Template->ftcID 			= $objEl->ftcID;
 		$this->Template->data_attr 		= $objEl->data_attr;

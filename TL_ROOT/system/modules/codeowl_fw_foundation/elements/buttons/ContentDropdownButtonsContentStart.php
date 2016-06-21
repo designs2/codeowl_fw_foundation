@@ -1,16 +1,16 @@
 <?php
-/** 
+ /** 
  * Extension for Contao Open Source CMS
  *
- * Copyright (C) 2015 Monique Hahnefeld
+ * Copyright (C) 2016 Monique Hahnefeld
  *
  * @package codeowl_fw_foundation
- * @author  Monique Hahnefeld <info@monique-hahnefeld.de>
- * @link    http://codeowl.org
+ * @author  Monique Hahnefeld <mhahnefeld@designs2.de>
+ * @link    http://designs2.de
  * @license LGPLv3
  *
  * `-,-´
- *	( )  codeowl.org
+ *	 ( )  codeowl set
  *************************/
 
 namespace Codeowl;
@@ -36,22 +36,22 @@ class ContentDropdownButtonsContentStart extends \ContentElement
 		}
 
 		// `-,-´ css and attributes
-		$cssFormation 					= new OutputGridVars;
-		$objEl 							= $cssFormation->design_elements($this);
+		$cssClassSet 					= new OutputGridVars;
+		$objEl 							= $cssClassSet->design_elements($this);
 		$this->Template->ftc_classes 	= $objEl->ftc_classes;
 		$this->Template->ftcID 			= $objEl->ftcID;
 		$this->Template->data_attr 		= $objEl->data_attr;
 		$this->Template->class 			= $objEl->ftc_classes;
 		$this->Template->cssID 			= $objEl->ftcID;
 		
-		if ($this->btn_hover) {
+		if ($this->co_fw_btn_hover) {
 			$hover='is_hover:true;';
 		}else {
 			$hover='';
 		}
 		// `-,-´ down is default
-		if ($this->drop_align!=='down'&&$this->drop_align!==' '&&$this->drop_align!=='') {
-			$drop_align='align:'.$this->drop_align;
+		if ($this->co_fw_drop_align!=='down'&&$this->co_fw_drop_align!==' '&&$this->co_fw_drop_align!=='') {
+			$drop_align='align:'.$this->co_fw_drop_align;
 		}else {
 			$drop_align='';
 		}
@@ -59,7 +59,7 @@ class ContentDropdownButtonsContentStart extends \ContentElement
 		
 		$this->Template->id = 'dropdown_cont' . $this->id;
 		$Output = new OutputPresets;
-		$this->Template->btn_classes = $this->btn_size. '' . $Output->splitArr($this->btn_styles);
+		$this->Template->co_fw_btn_classes = $this->co_fw_btn_size. '' . $Output->splitArr($this->co_fw_btn_styles);
 	
 		$this->Template->items = $items;
 		unset($this);

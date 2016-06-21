@@ -1,16 +1,16 @@
 <?php
-/** 
+ /** 
  * Extension for Contao Open Source CMS
  *
- * Copyright (C) 2015 Monique Hahnefeld
+ * Copyright (C) 2016 Monique Hahnefeld
  *
  * @package codeowl_fw_foundation
- * @author  Monique Hahnefeld <info@monique-hahnefeld.de>
- * @link    http://codeowl.org
+ * @author  Monique Hahnefeld <mhahnefeld@designs2.de>
+ * @link    http://designs2.de
  * @license LGPLv3
  *
  * `-,-´
- *	( )  codeowl.org
+ *	 ( )  codeowl set
  *************************/
 
 namespace Codeowl;
@@ -27,15 +27,15 @@ class ContentFlexVideo extends \ContentElement
 	// `-,-´ Extend the parent method
 	public function generate()
 	{
-		if (!$this->use_youtube&&!$this->vimeo&&!$this->own_src)
+		if (!$this->co_fw_use_youtube&&!$this->co_fw_vimeo&&!$this->co_fw_own_src)
 		{
 			return '';
 		}
 
 		if (TL_MODE == 'BE')
 		{
-			if ($this->use_youtube||$this->vimeo) {
-				return ($this->vimeo)?'<p>vimeo '. $this->youtube_vimeo_id . '</p>' :'<p> youtube '. $this->youtube_vimeo_id  . '</p>';
+			if ($this->co_fw_use_youtube||$this->co_fw_vimeo) {
+				return ($this->co_fw_vimeo)?'<p>vimeo '. $this->co_fw_youtube_vimeo_id . '</p>' :'<p> youtube '. $this->co_fw_youtube_vimeo_id  . '</p>';
 			}else {
 				return '<p> eigene videos </p>';
 			}
@@ -63,18 +63,18 @@ class ContentFlexVideo extends \ContentElement
 
 		$this->Template->poster = false;
 
-		if ($this->use_youtube) {
+		if ($this->co_fw_use_youtube) {
 			$this->Template->use_iframe=true;
-			$this->Template->embed_path = 'http://www.youtube.com/embed/' . $this->youtube_vimeo_id;
+			$this->Template->embed_path = 'http://www.youtube.com/embed/' . $this->co_fw_youtube_vimeo_id;
 		}
-		if ($this->vimeo) {
+		if ($this->co_fw_vimeo) {
 			$this->Template->use_iframe=true;
-			$this->Template->embed_path = 'http://player.vimeo.com/video/' . $this->youtube_vimeo_id;
+			$this->Template->embed_path = 'http://player.vimeo.com/video/' . $this->co_fw_youtube_vimeo_id;
 		}
-		if ($this->own_src) {
+		if ($this->co_fw_own_src) {
 			$this->Template->use_iframe=false;
 			
-			$video_files= unserialize($this->video_src);
+			$video_files= unserialize($this->co_fw_video_src);
 			
 			$video_Arr =array();
 			if (is_Array($video_files)) {
@@ -93,7 +93,7 @@ class ContentFlexVideo extends \ContentElement
 				$this->Template->embed_path =$video_Arr;
 			}
 			//video <track>
-			$track_files= unserialize($this->track_src);
+			$track_files= unserialize($this->co_fw_track_src);
 			
 			$track_Arr =array();
 			if (is_Array($track_files)) {
@@ -110,15 +110,15 @@ class ContentFlexVideo extends \ContentElement
 				//array($objFile);
 				$this->Template->track_path =$track_Arr;
 			}
-			if ($this->flash_player_src!==Null&&$this->flash_video_src!==Null) {
+			if ($this->co_fw_flash_player_src!==Null&&$this->co_fw_flash_video_src!==Null) {
 				$objFile = new \stdClass();
-				if (($objFile = \FilesModel::findByUuid($this->flash_player_src)) !== null)
+				if (($objFile = \FilesModel::findByUuid($this->co_fw_flash_player_src)) !== null)
 				{
 				//var_dump($objFile);
 				$this->Template->flash_player_src =$objFile->path;
 				}
 				$objFile = new \stdClass();
-				if (($objFile = \FilesModel::findByUuid($this->flash_video_src)) !== null)
+				if (($objFile = \FilesModel::findByUuid($this->co_fw_flash_video_src)) !== null)
 				{
 				//var_dump($objFile);
 				$this->Template->flash_video_src =$objFile->path;
@@ -136,11 +136,11 @@ class ContentFlexVideo extends \ContentElement
 		}
 
 		$this->Template->isVideo = true;
-		$this->Template->autoplay = $this->autoplay;
+		$this->Template->autoplay = $this->co_fw_autoplay;
 
 		// `-,-´ css and attributes
-		$cssFormation 					= new OutputGridVars;
-		$objEl 							= $cssFormation->design_elements($this);
+		$cssClassSet 					= new OutputGridVars;
+		$objEl 							= $cssClassSet->design_elements($this);
 		$this->Template->ftc_classes 	= $objEl->ftc_classes;
 		$this->Template->ftcID 			= $objEl->ftcID;
 		$this->Template->data_attr 		= $objEl->data_attr;

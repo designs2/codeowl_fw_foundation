@@ -1,16 +1,16 @@
 <?php
-/** 
+ /** 
  * Extension for Contao Open Source CMS
  *
- * Copyright (C) 2015 Monique Hahnefeld
+ * Copyright (C) 2016 Monique Hahnefeld
  *
  * @package codeowl_fw_foundation
- * @author  Monique Hahnefeld <info@monique-hahnefeld.de>
- * @link    http://codeowl.org
+ * @author  Monique Hahnefeld <mhahnefeld@designs2.de>
+ * @link    http://designs2.de
  * @license LGPLv3
  *
  * `-,-´
- *	( )  codeowl.org
+ *	 ( )  codeowl set
  *************************/
 
 namespace Codeowl;
@@ -36,18 +36,18 @@ class ContentPriceTable extends \ContentElement
 		
 		global $objPage;
 
-		$items = unserialize($this->price_table);
+		$items = unserialize($this->co_fw_price_table);
 		 if (!is_array($items)) {return;}
 		$nl2br = ($objPage->outputFormat == 'xhtml') ? 'nl2br_xhtml' : 'nl2br_html5';
 
 		$this->Template->id = 'table_' . $this->id;
-		$this->Template->summary = specialchars($this->summary);
-		$this->Template->cta_href= $this->cta_href;
+		$this->Template->summary = specialchars($this->co_fw_summary);
+		$this->Template->cta_href= $this->co_fw_cta_href;
 		$this->Template->items = $items;
 
 		// `-,-´ css and attributes
-		$cssFormation 					= new OutputGridVars;
-		$objEl 							= $cssFormation->design_elements($this);
+		$cssClassSet 					= new OutputGridVars;
+		$objEl 							= $cssClassSet->design_elements($this);
 		$this->Template->ftc_classes 	= $objEl->ftc_classes;
 		$this->Template->ftcID 			= $objEl->ftcID;
 		$this->Template->data_attr 		= $objEl->data_attr;
