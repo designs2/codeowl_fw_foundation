@@ -52,8 +52,8 @@ class OutputFoundationVars extends \Controller
 							){
 								continue;
 							}
-						  $arrUtils 			= array_merge($arrUtils,$settings[2]);
-						  $arrScripts[]		= $name;
+						  $arrUtils 			= array_merge($arrUtils,$settings[3]);
+						  $arrScripts[$name]		= $settings[2];
 					  }
 				  
 					  // `-,-´ Utils

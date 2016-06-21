@@ -107,29 +107,29 @@ $input-radius: $global-radius;
 
 ';
 
-$typography_vars_default = "
+$typography_vars_default = '
 // Base Typography
 
 $header-font-family: $body-font-family;
 $header-font-weight: $global-weight-normal;
 $header-font-style: normal;
-$font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
+$font-family-monospace: Consolas, \'Liberation Mono\', Courier, monospace;
 $header-sizes: (
   small: (
-    'h1': 24,
-    'h2': 20,
-    'h3': 19,
-    'h4': 18,
-    'h5': 17,
-    'h6': 16,
+    \'h1\': 24,
+    \'h2\': 20,
+    \'h3\': 19,
+    \'h4\': 18,
+    \'h5\': 17,
+    \'h6\': 16,
   ),
   medium: (
-    'h1': 48,
-    'h2': 40,
-    'h3': 31,
-    'h4': 25,
-    'h5': 20,
-    'h6': 16,
+    \'h1\': 48,
+    \'h2\': 40,
+    \'h3\': 31,
+    \'h4\': 25,
+    \'h5\': 20,
+    \'h6\': 16,
   ),
 );
 $header-color: inherit;
@@ -185,9 +185,9 @@ $subheader-font-weight: $global-weight-normal;
 $subheader-margin-top: 0.2rem;
 $subheader-margin-bottom: 0.5rem;
 $stat-font-size: 2.5rem;
-";
+';
 
-$controls_vars_default = "
+$controls_vars_default = '
 // Button
 
 $button-padding: 0.85em 1em;
@@ -210,7 +210,7 @@ $button-opacity-disabled: 0.25;
 
 $buttongroup-margin: 1rem;
 $buttongroup-spacing: 1px;
-$buttongroup-child-selector: '.button';
+$buttongroup-child-selector: \'.button\';
 $buttongroup-expand-max: 6;
 
 // Close Button
@@ -251,9 +251,9 @@ $switch-paddle-offset: 0.25rem;
 $switch-paddle-radius: $global-radius;
 $switch-paddle-transition: all 0.25s ease-out;
 
-";
+';
 
-$navigation_vars_default = "
+$navigation_vars_default = '
 // Accordion Menu
 
 $accordionmenu-arrows: true;
@@ -318,9 +318,9 @@ $topbar-submenu-background: $topbar-background;
 $topbar-title-spacing: 1rem;
 $topbar-input-width: 200px;
 $topbar-unstack-breakpoint: medium;
-";
+';
 
-$containers_vars_default = "
+$containers_vars_default = '
 // Accordion
 
 $accordion-background: $white;
@@ -373,7 +373,7 @@ $offcanvas-transition-length: 0.5s;
 $offcanvas-transition-timing: ease;
 $offcanvas-fixed-reveal: true;
 $offcanvas-exit-background: rgba($white, 0.25);
-$maincontent-class: 'off-canvas-content';
+$maincontent-class: \'off-canvas-content\';
 $maincontent-shadow: 0 0 10px rgba($black, 0.5);
 
 // Reveal
@@ -387,9 +387,9 @@ $reveal-radius: $global-radius;
 $reveal-zindex: 1005;
 $reveal-overlay-background: rgba($black, 0.45);
 
-";
+';
 
-$modal_vars_default = "
+$modal_vars_default = '
 // Table
 
 $table-background: $white;
@@ -405,9 +405,9 @@ $table-head-background: smart-scale($table-background, $table-color-scale / 2);
 $table-foot-background: smart-scale($table-background, $table-color-scale);
 $table-head-font-color: $body-font-color;
 $show-header-for-stacked: false;
-";
+';
 
-$media_vars_default = "
+$media_vars_default = '
 // Badge
 
 $badge-background: $primary-color;
@@ -444,9 +444,9 @@ $orbit-control-background-hover: rgba($black, 0.5);
 $orbit-control-padding: 1rem;
 $orbit-control-zindex: 10;
 
-";
+';
 
-$carousel_vars_default = "
+$carousel_vars_default = '
 // Progress Bar
 
 $progress-height: 1rem;
@@ -477,9 +477,9 @@ $tooltip-pip-height: $tooltip-pip-width * 0.866;
 $tooltip-radius: $global-radius;
 
 
-";
+';
 
-$plugins_vars_default = "
+$plugins_vars_default = '
 // Abide
 
 $abide-inputs: true;
@@ -490,7 +490,7 @@ $input-error-color: map-get($foundation-palette, alert);
 $input-error-font-size: rem-calc(12);
 $input-error-font-weight: $global-weight-bold;
 
-";
+';
 // `-,-´  helper for dca container
 function createCheckboxArray($name,$onchange){
 	
