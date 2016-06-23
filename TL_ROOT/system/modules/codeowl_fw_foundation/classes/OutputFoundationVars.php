@@ -32,13 +32,19 @@ class OutputFoundationVars extends \Controller
               		
 					// `-,-´error if jquery is not enabled in layout
 					if(!$obj->__get("layout")->__get("addJQuery")){
-						 \Message::addError('Error! Please enable jQuery in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
+						$this->log('Error! Please enable jQuery in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"), __METHOD__, TL_ERROR);
+						throw new Exception('Error! Please enable jQuery in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
+						//is backend only \Message::addError('Error! Please enable jQuery in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
+						exit;
 					}
 					$fwSettingsModel = FoundationSettingsModel::findByPk($obj->__get("layout")->__get("co_fw_setting"));
 					
 					// `-,-´error if setting is not selected in layout or does not exist
 					if(NULL == $fwSettingsModel){
-						 \Message::addError('Error! Please select framework setting in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
+						// \Message::addError('Error! Please select framework setting in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
+							$this->log('Error! Please select framework setting in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"), __METHOD__, TL_ERROR);
+							throw new Exception('Error! Please select framework setting in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
+						exit;
 					}
 					$arrFwSettingsModel = $fwSettingsModel->row();
 				
@@ -91,8 +97,11 @@ class OutputFoundationVars extends \Controller
 	                 		 			$arrScripts
 										)
 						);
-					
-              
+						
+						if(array_key_exists('offcanvas_js', $arrScripts)){
+							$obj->__get("layout")->__set("co_fw_use_offcanvas",1);
+						}
+						 
 	                  if ($template == 'fe_page_gc'){
 	                      $obj->setName($template.'_ftc'); // full fw foundation support
 	                  }
@@ -142,16 +151,17 @@ class OutputFoundationVars extends \Controller
 
   // `-,-´ Returns foundation scripts for layout
   public function getScriptStr($objLayout,$fwPathToFolder,$fwModuleJsPrefix,$arrScripts){
-       global $objPage;
+        global $objPage;
 		$parsedTemplates 	= array();
 		//get layouts fw setting, get row, iteriere all fields with _js and _pi if checked, look into packages array for js-file and required utils
 		$objCombiner 		= new \Combiner();
 		foreach ($arrScripts as $name => $path) {
 			$objCombiner->add('system/modules/codeowl_fw_foundation/assets/foundation/js/'.$fwModuleJsPrefix.$path.".js");
-			if($path !== 'core'){
-				$template =  new \FrontendTemplate($name);
-				$parsedTemplates[] 	= $template->parse();
+			if($path == 'core'){
+				$name = 'co_fw_core';	
 			}
+				$template 					=  new \FrontendTemplate($name);
+				$parsedTemplates[] 	= $template->parse();
 			
 		}
 		$scriptTemplates = implode("\r\n\t",$parsedTemplates);

@@ -18,20 +18,13 @@
  $palettes_ftc  	= str_replace($anchor,",{co_fw_settings_legend},co_fw_add_foundation;".$anchor,$palettes);
  $GLOBALS['TL_DCA']['tl_layout']['palettes']['__selector__'][] 					=  'co_fw_add_foundation';
  $GLOBALS['TL_DCA']['tl_layout']['palettes']['default'] 							= $palettes_ftc;
- $GLOBALS['TL_DCA']['tl_layout']['subpalettes']['co_fw_add_foundation'] = 'co_fw_use_offcanvas,co_fw_setting';
+ $GLOBALS['TL_DCA']['tl_layout']['subpalettes']['co_fw_add_foundation'] = 'co_fw_setting';
 
 
 	  
  array_insert($GLOBALS['TL_DCA']['tl_layout']['fields'], 0, array
 	(
-	'co_fw_use_offcanvas' => array
-	(
-		'label'                   		=> &$GLOBALS['TL_LANG']['tl_layout']['co_fw_use_offcanvas'],
-		'exclude'                 	=> true,
-		'inputType'               	=> 'checkbox',
-		'eval'                    		=> array('submitOnChange'=>false),
-		'sql'                    		 => "char(1) NOT NULL default ''"
-	),
+
 	'co_fw_add_foundation' => array
 	(
 		'label'                   		=> &$GLOBALS['TL_LANG']['tl_layout']['co_fw_add_foundation'],

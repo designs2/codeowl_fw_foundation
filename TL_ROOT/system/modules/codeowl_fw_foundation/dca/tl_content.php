@@ -15,59 +15,58 @@
 
 
 $fieldsSize 	= count($GLOBALS['TL_DCA']['tl_content']['fields'])-1;
-$palettesSize = count($palettes)-1;
+
 $default 		= '{type_legend},type,headline;';
 $expert 		= '{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
 
 // `-,-´ Add palettes for contentelements
-array_insert($GLOBALS['TL_DCA']['tl_content']['palettes'], $palettesSize, array
+array_insert($GLOBALS['TL_DCA']['tl_content']['palettes'], 0, array
 (
-	'co_fw_orbit'        						        => $default.'{source_legend},multiSRC,sortBy,useHomeDir;{image_legend},size,numberOfItems;'.$expert,
-	'co_fw_orbit_start'        				      => $default.$expert,
-	'co_fw_orbit_start_inside'        	    => $default.$expert,
-	'co_fw_orbit_stop'        				      => $default.$expert,
-	'co_fw_orbit_stop_inside'        			  => $default.$expert,
+	'orbit'        						        => $default.'{source_legend},multiSRC,sortBy,useHomeDir;{image_legend},size,numberOfItems;'.$expert,
+	'orbit_start'        				      => $default.$expert,
+	'orbit_start_inside'        	    => $default.$expert,
+	'orbit_stop'        				      => $default.$expert,
+	'orbit_stop_inside'        			  => $default.$expert,
 	
-	'co_fw_clearing'            				    => $default.'{source_legend},multiSRC,sortBy,useHomeDir;{image_legend},size,co_fw_perRow,co_fw_fullsize,co_fw_perPage,co_fw_numberOfItems;'.$expert,
+	'clearing'            				    => $default.'{source_legend},multiSRC,sortBy,useHomeDir;{image_legend},size,co_fw_perRow,co_fw_fullsize,co_fw_perPage,co_fw_numberOfItems;'.$expert,
 	
-	'co_fw_button_ftc'            			    => '{type_legend},type,co_fw_btn_name,co_fw_cta_href,co_fw_use_reveal;{button_legend},co_fw_btn_size,co_fw_btn_styles;'.$expert,
-	'co_fw_button_bar_start_ftc'          	=> $default.$expert,
-	'co_fw_button_bar_stop_ftc'           	=> '{type_legend},type;'.$expert,
-	'co_fw_button_group'            			  => '{type_legend},type;{dropdown_legend},co_fw_list_links;{button_legend},co_fw_btn_size,co_fw_btn_styles;'.$expert,
+	'button_ftc'            			    => '{type_legend},type,co_fw_btn_name,co_fw_cta_href,co_fw_use_reveal;{button_legend},co_fw_btn_size,co_fw_btn_styles;'.$expert,
+	'button_bar_start_ftc'          	=> $default.$expert,
+	'button_bar_stop_ftc'           	=> '{type_legend},type;'.$expert,
+	'button_group'            			  => '{type_legend},type;{dropdown_legend},co_fw_list_links;{button_legend},co_fw_btn_size,co_fw_btn_styles;'.$expert,
 	
-	'co_fw_dropdown_buttons'            		=> '{type_legend},type,co_fw_btn_name;{dropdown_legend},co_fw_list_links,co_fw_drop_align;{button_legend},co_fw_btn_size,co_fw_btn_styles,co_fw_btn_split,co_fw_btn_hover;'.$expert,
-	'co_fw_dropdown_buttons_content_start'  => '{ftc_legend},co_fw_small_ftc,co_fw_large_ftc,co_fw_float_ftc,co_fw_align_ftc;{type_legend},type,co_fw_btn_name,co_fw_drop_align;{button_legend},co_fw_btn_size,co_fw_btn_styles,co_fw_btn_split,co_fw_btn_hover;'.$expert,
-	'co_fw_dropdown_buttons_content_stop'   => '{type_legend},type;'.$expert,
+	'dropdown_buttons'            		=> '{type_legend},type,co_fw_btn_name;{dropdown_legend},co_fw_list_links,co_fw_drop_align;{button_legend},co_fw_btn_size,co_fw_btn_styles,co_fw_btn_split,co_fw_btn_hover;'.$expert,
+	'dropdown_buttons_content_start'  => '{ftc_legend},co_fw_small_ftc,co_fw_large_ftc,co_fw_float_ftc,co_fw_align_ftc;{type_legend},type,co_fw_btn_name,co_fw_drop_align;{button_legend},co_fw_btn_size,co_fw_btn_styles,co_fw_btn_split,co_fw_btn_hover;'.$expert,
+	'dropdown_buttons_content_stop'   => '{type_legend},type;'.$expert,
 	
-	'co_fw_joyride'           				      => '{type_legend},type;{joyride_legend},co_fw_joyride;'.$expert,
-	'co_fw_alert_box'            				    => '{type_legend},type;{alert_legend},co_fw_alert_kind,co_fw_alert_style,co_fw_alert_txt;'.$expert,
-	'co_fw_reveal_modal_start'            	=> '{type_legend},type;'.$expert,
-	'co_fw_reveal_modal_stop'            		=> '{type_legend},type;'.$expert,
+	'joyride'           				      => '{type_legend},type;{joyride_legend},co_fw_joyride;'.$expert,
+	'alert_box'            				    => '{type_legend},type;{alert_legend},co_fw_alert_kind,co_fw_alert_style,co_fw_alert_txt;'.$expert,
+	'reveal_modal_start'            	=> '{type_legend},type;'.$expert,
+	'reveal_modal_stop'            		=> '{type_legend},type;'.$expert,
 	
-	'co_fw_magellan_stop'            			  => $default.$expert,
-	'co_fw_magellan_nav'            			  => '{type_legend},type;{magellan_legend},co_fw_magellan_nav;'.$expert,
+	'magellan_stop'            			  => $default.$expert,
+	'magellan_nav'            			  => '{type_legend},type;{magellan_legend},co_fw_magellan_nav;'.$expert,
 
-	'co_fw_blockquote'            			    => $default.'{blockquote_legend},co_fw_blockquote,co_fw_cite;'.$expert,
-	'co_fw_vcard'            					      => $default.'{vcard_legend},co_fw_vcard;'.$expert,
-	'co_fw_def_list'            				    => $default.'{list_legend},co_fw_def_list;'.$expert,
+	'blockquote'            			    => $default.'{blockquote_legend},co_fw_blockquote,co_fw_cite;'.$expert,
+	'vcard'            					      => $default.'{vcard_legend},co_fw_vcard;'.$expert,
+	'def_list'            				    => $default.'{list_legend},co_fw_def_list;'.$expert,
 	
-	'co_fw_progress_bar'            			  => '{type_legend},type,co_fw_progress_size,co_fw_btn_styles;'.$expert,
+	'progress_bar'            			  => '{type_legend},type,co_fw_progress_size,co_fw_btn_styles;'.$expert,
 	
-	'co_fw_tab_ftc_start'  					        => $default.'{nav_legend},co_fw_tabs_nav,co_fw_tabs_align;'.$expert,
-	'co_fw_tab_ftc_stop'   					        => '{type_legend},type;'.$expert,
-	'co_fw_tab_ftc_start_inside'  			    => '{type_legend},type;'.$expert,
-	'co_fw_tab_ftc_stop_inside'   			    => '{type_legend},type;'.$expert,
+	'tab_ftc_start'  					        => $default.'{nav_legend},co_fw_tabs_nav,co_fw_tabs_align;'.$expert,
+	'tab_ftc_stop'   					        => '{type_legend},type;'.$expert,
+	'tab_ftc_start_inside'  			    => '{type_legend},type;'.$expert,
+	'tab_ftc_stop_inside'   			    => '{type_legend},type;'.$expert,
 	
-	'co_fw_acc_ftc_start'  					        => $default.$expert,
-	'co_fw_acc_ftc_stop'   					        => '{type_legend},type;'.$expert,
-	'co_fw_acc_ftc_start_inside'  			    => $default.$expert,
-	'co_fw_acc_ftc_stop_inside'   			    => '{type_legend},type;'.$expert,
-	'co_fw_price_table'        				      => $default.'{table_legend},co_fw_price_table,co_fw_cta_href;'.$expert,
+	'acc_ftc_start'  					        => $default.$expert,
+	'acc_ftc_stop'   					        => '{type_legend},type;'.$expert,
+	'acc_ftc_start_inside'  			    => $default.$expert,
+	'acc_ftc_stop_inside'   			    => '{type_legend},type;'.$expert,
+	'price_table'        				      => $default.'{table_legend},co_fw_price_table,co_fw_cta_href;'.$expert,
 	
-	'co_fw_flex_video'        				      => $default.'{video_legend},co_fw_use_youtube,co_fw_vimeo,co_fw_own_src;'.$expert,
-	'co_fw_placeholder_image'               => $default.'{placeholder_legend},co_fw_is_bw,co_fw_stamp,co_fw_topic;{image_legend},alt,title,size,co_fw_imagemargin,imageUrl,caption;'.$expert,
+	'flex_video'        				      => $default.'{video_legend},co_fw_use_youtube,co_fw_vimeo,co_fw_own_src;'.$expert,
+	'placeholder_image'               => $default.'{placeholder_legend},co_fw_is_bw,co_fw_stamp,co_fw_topic;{image_legend},alt,title,size,co_fw_imagemargin,imageUrl,caption;'.$expert,
 
-  
   ));
   
   // `-,-´ Selector

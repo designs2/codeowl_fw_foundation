@@ -16,6 +16,8 @@
 $co_grid = Config::get('co_grid_wizard_palette');
 $default = $co_grid.'{title_legend},name,headline,type;';
 $expert  = '{template_legend:hide},navigationTpl,customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+// `-,-´ selector
+$GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'co_fw_top_bar';
 
 
 $GLOBALS['TL_DCA']['tl_module']['palettes']['co_fw_offcanvas']    			= $default.'{nav_legend},levelOffset,showLevel,hardLimit,showProtected,co_fw_offcanvas_align,co_fw_top_bar;{reference_legend:hide},defineRoot;'.$expert;
@@ -25,14 +27,10 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['co_fw_topbar_stop']    			= $defaul
 $GLOBALS['TL_DCA']['tl_module']['palettes']['co_fw_topbar_section']    		= $default.'{nav_legend},dropdown_level,levelOffset,showLevel,hardLimit,showProtected,co_fw_offcanvas_align;{reference_legend:hide},defineRoot;'.$expert;
 $GLOBALS['TL_DCA']['tl_module']['palettes']['co_fw_topbar_section_custom']  	= $default.'{nav_legend},pages,showProtected,co_fw_offcanvas_align,co_fw_top_bar;'.$expert;
 
-
-// `-,-´ selector
-$GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'co_fw_top_bar';
- 
 // `-,-´ subpalettes
 $GLOBALS['TL_DCA']['tl_module']['subpalettes']['co_fw_top_bar']='co_fw_top_bar_left,co_fw_top_bar_right';
 
-array_insert($GLOBALS['TL_DCA']['tl_module']['fields'], $fieldsSize, array
+array_insert($GLOBALS['TL_DCA']['tl_module']['fields'], 0, array
 (
 	// `-,-´ topbar + dropdown
 	'co_fw_dropdown_level' => array

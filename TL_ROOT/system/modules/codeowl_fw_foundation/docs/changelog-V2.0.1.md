@@ -12,6 +12,10 @@ Contao: 3.4.6 - 4.0.0
 
 ###New
 Zurbs Foundation Version 6.2.3
+####Accordion 
+active-class is now named 'is-active', not 'active'. You can set the active state into the accordion inner element with the CSS-Class field 
+####Tabs 
+active-class is now named 'is-active', not 'active'.
 
 ###Improved
 

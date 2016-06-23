@@ -1,0 +1,15 @@
+jQuery.noConflict();
+jQuery(document).ready(function($){
+
+	var _toggler_right = $('.right-off-canvas-toggle');	
+	//console.log(_toggler_right+' '+_toggler_right.index());
+	if(_toggler_right.index() > -1){
+		_toggler_right.hide();
+	}
+	var _toggler_left = $('.left-off-canvas-toggle');	
+	//console.log(_toggler_left+' '+_toggler_left.index());
+	if(_toggler_left.index() > -1){
+		_toggler_left.hide();
+	}
+ 	
+});

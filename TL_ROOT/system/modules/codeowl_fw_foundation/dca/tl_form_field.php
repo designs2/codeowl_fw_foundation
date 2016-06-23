@@ -13,8 +13,8 @@
  *	 ( )  codeowl set
  *************************/
 
-$fieldsSize 	= count($GLOBALS['TL_DCA']['tl_form_field']['fields'])-1;
-$palettesSize 	= count($palettes)-1;
+
+
 $default 		= '{type_legend},type;';
 $expert 		= '{template_legend:hide},customTpl;{expert_legend:hide},class;';
 
@@ -22,7 +22,7 @@ $expert 		= '{template_legend:hide},customTpl;{expert_legend:hide},class;';
 $GLOBALS['TL_DCA']['tl_form_field']['palettes']['range_slider'] = $default.'{slider_legend},co_fw_rs_classes,co_fw_rs_start,co_fw_rs_end,co_fw_rs_step,co_fw_rs_show_value,co_fw_rs_unity;{template_legend:hide},customTpl';
 
 
-array_insert($GLOBALS['TL_DCA']['tl_form_field']['fields'], $fieldsSize, array
+array_insert($GLOBALS['TL_DCA']['tl_form_field']['fields'], 0, array
 (
 			
 		   	// `-,-´ range slider

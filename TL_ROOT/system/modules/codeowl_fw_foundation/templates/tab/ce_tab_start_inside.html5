@@ -1,1 +1,1 @@
-<div class="content row <?php echo $this->class; ?> "<?php echo $this->ftcID; ?>>
+<div class="tabs-panel" id="<?php echo $this->anchor; ?>">

@@ -1,0 +1,9 @@
+jQuery.noConflict();
+jQuery(document).ready(function($){	
+	$('.ce_text [title]').each(function(index){
+	    _this = $(this);
+	    _this.attr('data-tooltip','tooltip'+index).addClass('tip-bottom');
+	});
+	var elem = new Foundation.Tooltip($('.has-tip-custom,.button,a'));
+	
+});

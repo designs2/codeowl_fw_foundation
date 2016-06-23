@@ -1,5 +1,4 @@
 <!-- indexer::stop -->
-<?php //var_dump($this); ?>
 <?php   if ($this->top_bar=='1'):?>
 	 <nav class="tab-bar" >
 
@@ -40,15 +39,6 @@
 		
 		</aside>
 	<?php  else: ?>
-		  <script>
-		  	  <?php   if ($this->offcanvas_align=='left') {
-		  	echo "var _toggler = document.getElementsByClassName('left-off-canvas-toggle');";
-		   }else {
-		    echo " var _toggler = document.getElementsByClassName('right-off-canvas-toggle');";
-		  	} ?>
-		  var aNode = _toggler[0];
-		  aNode.style.display = 'none';
-
-		  </script>
+		
   <?php  endif; ?>
 <!-- indexer::continue -->

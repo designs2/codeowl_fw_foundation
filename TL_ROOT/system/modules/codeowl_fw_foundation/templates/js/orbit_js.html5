@@ -1,0 +1,5 @@
+jQuery.noConflict();
+jQuery(document).ready(function($){	
+	//TODO: find the var for that slide_number_text: '/'
+   	// var elem = new Foundation.Orbit(elm, options);
+});

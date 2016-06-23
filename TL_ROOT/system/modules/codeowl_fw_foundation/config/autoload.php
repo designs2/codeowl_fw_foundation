@@ -171,6 +171,7 @@ TemplateLoader::addFiles(array
 	'mod_login_2cl_ftc' => 'system/modules/codeowl_fw_foundation/templates/modules',
 	'mod_password_ftc' => 'system/modules/codeowl_fw_foundation/templates/modules',
 	// `-,-´ Javascript components 
+	'co_fw_core' => 'system/modules/codeowl_fw_foundation/templates/js',
 	'slider_js' => 'system/modules/codeowl_fw_foundation/templates/js',
 	'dropdown_menu_js' => 'system/modules/codeowl_fw_foundation/templates/js',
 	'drilldown_menu_js' => 'system/modules/codeowl_fw_foundation/templates/js',

@@ -163,12 +163,12 @@ array_insert($GLOBALS['FE_MOD'], 2, array
 (
     'tl_ftc' => array
     (
-        'ftc_topbar_start'         => 'ModuleTopbarStart',
-        'ftc_topbar_section'         => 'ModuleTopbarSection',
-        'ftc_topbar_section_custom'         => 'ModuleTopbarSectionCustom',
-        'ftc_topbar_stop'         => 'ModuleTopbarStop',
-        'ftc_offcanvas'         => 'ModuleOffcanvas',
-        'ftc_offcanvas_custom'         => 'ModuleOffcanvasCustom'
+        'co_fw_topbar_start'         => 'ModuleTopbarStart',
+        'co_fw_topbar_section'         => 'ModuleTopbarSection',
+        'co_fw_topbar_section_custom'         => 'ModuleTopbarSectionCustom',
+        'co_fw_topbar_stop'         => 'ModuleTopbarStop',
+        'co_fw_offcanvas'         => 'ModuleOffcanvas',
+        'co_fw_offcanvas_custom'         => 'ModuleOffcanvasCustom'
     )
 ));
 
