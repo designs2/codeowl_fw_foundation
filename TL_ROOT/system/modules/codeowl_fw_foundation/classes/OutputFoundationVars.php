@@ -28,45 +28,59 @@ class OutputFoundationVars extends \Controller
          
 			
 			
-              if($obj->layout->__get("'co_fw_add_foundation")=='1'){
+              if($obj->__get("layout")->__get("co_fw_add_foundation")){
               		
 					// `-,-´error if jquery is not enabled in layout
 					if(!$obj->__get("layout")->__get("addJQuery")){
-						 Message::addError('Error! Please enable jQuery in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
+						 \Message::addError('Error! Please enable jQuery in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
 					}
-					$fwSettingsModel = FoundationSettingsModel::findByPk($obj->__get("layout")->__get("'co_fw_setting"));
+					$fwSettingsModel = FoundationSettingsModel::findByPk($obj->__get("layout")->__get("co_fw_setting"));
+					
 					// `-,-´error if setting is not selected in layout or does not exist
 					if(NULL == $fwSettingsModel){
-						 Message::addError('Error! Please select framework setting in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
+						 \Message::addError('Error! Please select framework setting in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
 					}
 					$arrFwSettingsModel = $fwSettingsModel->row();
 				
-	              	  require_once('../config/framework.php'); 
+	              	  require_once(TL_ROOT.'/system/modules/codeowl_fw_foundation/config/framework.php'); 
+					//  var_dump($fwPathToFolder,TL_ROOT,$obj->__get("layout")->__get("co_fw_add_foundation"));
 					  $arrUtils 		= array();
 					  $arrScripts 	= array();
+					  $arrScripts['core']		= 'core';
 					  foreach ($fwModulePackages as $name => $settings) {
+					   		
 					  	if(
-					  		!in_array($name, $arrFwSettingsModel)  || 
+					  		!array_key_exists($name, $fwModulePackages)  || 
 					  		!$arrFwSettingsModel[$name] || 
 					  		(!strpos($name, '_js') && !strpos($name, '_pi'))
 							){
 								continue;
 							}
-						  $arrUtils 			= array_merge($arrUtils,$settings[3]);
-						  $arrScripts[$name]		= $settings[2];
+							// 			var_dump(array_key_exists($name, $fwModulePackages),'xx',$name,(!$arrFwSettingsModel[$name]),strpos($name, '_js'),(!strpos($name, '_js') && !strpos($name, '_pi')));
+					
+							if(is_array($settings[4])){
+								  $arrUtils 						= array_merge($arrUtils,$settings[4]);
+							}
+						
+						  $arrScripts[$name]		= $settings[3];
+						  if($name == 'responsive_navigation'){
+						  		$arrScripts[$name]		= $settings[3][0];
+								$arrScripts[$name.'toggle']		= $settings[3][1];
+						  }
+						  
 					  }
 				  
 					  // `-,-´ Utils
 	                  $obj->__get("layout")->__set(
 	                  		"ftcLib",
 	                 		 $this->getLibStr(
-	                 		 			$obj->layout,
+	                 		 			$obj->__get("layout"),
 	                 		 			$fwPathToFolder,
 	                 		 			$fwModuleJsUtilsPrefix,
 	                 		 			array_unique($arrUtils)
 									)
 					  );
-					  
+					
 					  // `-,-´ framework scripts
 	                  $obj->__get("layout")->__set(
 	                  		"ftcJS",
@@ -89,20 +103,20 @@ class OutputFoundationVars extends \Controller
           } 
 
           switch ($template) {
-            case 'ce_list':
-            case 'mod_navigation':
-            case 'mod_search_ftc':
-            case 'mod_login_1cl':
-            case 'mod_login_2cl':
-            case 'mod_password':
-            case 'mod_breadcrumb':
+	            case 'ce_list':
+	            case 'mod_navigation':
+	            case 'mod_search_ftc':
+	            case 'mod_login_1cl':
+	            case 'mod_login_2cl':
+	            case 'mod_password':
+	            case 'mod_breadcrumb':
           
                $obj->setName($template.'_ftc'); 
-              break;
+              	break;
             
             default:
              
-              break;
+              	break;
           }
 
    }  
@@ -116,12 +130,13 @@ class OutputFoundationVars extends \Controller
 		//get layouts fw setting, get row, iteriere all fields with _js and _pi if checked, look into packages array for js-file and required utils
 		$objCombiner 		= new \Combiner();
 		foreach ($arrUtils as $name => $path) {
-			$objCombiner->add($fwPathToFolder.'/js/'.$fwModuleJsUtilsPrefix.$path.".js");
-			$parsedTemplates[] 	= new \FrontendTemplate($name);
+			//$fwPathToFolder.
+			$objCombiner->add('system/modules/codeowl_fw_foundation/assets/foundation/js/'.$fwModuleJsUtilsPrefix.$path.".js");
+			//$template =  new \FrontendTemplate($path);
+			//$parsedTemplates[] 	= $template->parse();
 		}
-		
-		return "\r\n" . \Template::generateScriptTag($objCombiner->getCombinedFile())
-				 . "\r\n"	. \Template::generateInlineScript(implode("\r\n\t",$parsedTemplates));
+		return "\r\n" . \Template::generateScriptTag($objCombiner->getCombinedFile());
+				// . "\r\n"	. \Template::generateInlineScript(implode("\r\n\t",$parsedTemplates));
 
   }  
 
@@ -132,12 +147,18 @@ class OutputFoundationVars extends \Controller
 		//get layouts fw setting, get row, iteriere all fields with _js and _pi if checked, look into packages array for js-file and required utils
 		$objCombiner 		= new \Combiner();
 		foreach ($arrScripts as $name => $path) {
-			$objCombiner->add($fwPathToFolder.'/js/'.$fwModuleJsPrefix.$path.".js");
-			$parsedTemplates[] 	= new \FrontendTemplate($name);
+			$objCombiner->add('system/modules/codeowl_fw_foundation/assets/foundation/js/'.$fwModuleJsPrefix.$path.".js");
+			if($path !== 'core'){
+				$template =  new \FrontendTemplate($name);
+				$parsedTemplates[] 	= $template->parse();
+			}
+			
 		}
+		$scriptTemplates = implode("\r\n\t",$parsedTemplates);
+		//var_dump(\Template::generateInlineScript(implode("\r\n\t",$parsedTemplates)),$objCombiner->getCombinedFile(),\Template::generateScriptTag($objCombiner->getCombinedFile()));
 		
 		return "\r\n" . \Template::generateScriptTag($objCombiner->getCombinedFile())
-				 . "\r\n"	. \Template::generateInlineScript(implode("\r\n\t",$parsedTemplates));
+				 . "\r\n"	. \Template::generateInlineScript($scriptTemplates);
   }    
 }
 ?>

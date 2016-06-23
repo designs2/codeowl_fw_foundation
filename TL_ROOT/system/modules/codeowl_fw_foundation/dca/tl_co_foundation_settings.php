@@ -185,6 +185,7 @@ $subheader-font-weight: $global-weight-normal;
 $subheader-margin-top: 0.2rem;
 $subheader-margin-bottom: 0.5rem;
 $stat-font-size: 2.5rem;
+
 ';
 
 $controls_vars_default = '
@@ -318,6 +319,17 @@ $topbar-submenu-background: $topbar-background;
 $topbar-title-spacing: 1rem;
 $topbar-input-width: 200px;
 $topbar-unstack-breakpoint: medium;
+
+// Title Bar
+
+$titlebar-background: $black;
+$titlebar-color: $white;
+$titlebar-padding: 0.5rem;
+$titlebar-text-font-weight: bold;
+$titlebar-icon-color: $white;
+$titlebar-icon-color-hover: $medium-gray;
+$titlebar-icon-spacing: 0.25rem;
+
 ';
 
 $containers_vars_default = '
@@ -405,6 +417,21 @@ $table-head-background: smart-scale($table-background, $table-color-scale / 2);
 $table-foot-background: smart-scale($table-background, $table-color-scale);
 $table-head-font-color: $body-font-color;
 $show-header-for-stacked: false;
+
+// Tabs
+
+$tab-margin: 0;
+$tab-background: $white;
+$tab-background-active: $light-gray;
+$tab-item-font-size: rem-calc(12);
+$tab-item-background-hover: $white;
+$tab-item-padding: 1.25rem 1.5rem;
+$tab-expand-max: 6;
+$tab-content-background: $white;
+$tab-content-border: $light-gray;
+$tab-content-color: foreground($tab-background, $primary-color);
+$tab-content-padding: 1rem;
+
 ';
 
 $media_vars_default = '
@@ -476,7 +503,6 @@ $tooltip-pip-width: 0.75rem;
 $tooltip-pip-height: $tooltip-pip-width * 0.866;
 $tooltip-radius: $global-radius;
 
-
 ';
 
 $plugins_vars_default = '
@@ -491,6 +517,20 @@ $input-error-font-size: rem-calc(12);
 $input-error-font-weight: $global-weight-bold;
 
 ';
+/*
+ * not implemented
+ * // 23. Meter
+// ---------
+
+$meter-height: 1rem;
+$meter-radius: $global-radius;
+$meter-background: $medium-gray;
+$meter-fill-good: $success-color;
+$meter-fill-medium: $warning-color;
+$meter-fill-bad: $alert-color;
+
+ * 
+ * */
 // `-,-´  helper for dca container
 function createCheckboxArray($name,$onchange){
 	
@@ -617,12 +657,12 @@ $GLOBALS['TL_DCA']['tl_co_foundation_settings'] = array
 	
 		{grid_legend},cols,breakpoint,max_width,gap,radius;
 		
-		{general_legend},grid, flex_grid, forms, visibility_classes, add_general_vars;		
+		{general_legend},grid, flex_grid, forms, input_range, visibility_classes, add_general_vars;		
 		{typography_legend},text_direction,typography, add_typography_vars;
 		{controls_legend},button, button_group, close_button, slider_js, switch, add_controls_vars;
-		{navigation_legend},overview, menu, dropdown_menu_js, drilldown_menu_js, accordion_menu_js, top_bar, responsive_navigation, magellan_js, pagination, breadcrumbs, add_navigation_vars;
+		{navigation_legend},menu, menu_icon, dropdown_menu_js, drilldown_menu_js, accordion_menu_js, top_bar, title_bar, responsive_navigation, magellan_js, pagination, breadcrumbs, add_navigation_vars;
 		{containers_legend},accordion_js, callout, dropdown_js, media_object, offcanvas_js, reveal_js, add_containers_vars;
-		{modal_legend},table_fw, table_js, add_modal_vars;
+		{modal_legend},table_fw, tabs_js, add_modal_vars;
 		{media_legend},badge, flex_video, label, orbit_js, add_media_vars;
 		{carousel_legend},progressbar, thumbnail, tooltip_js, add_carousel_vars;
 		{plugins_legend},abide_pi, equilizer_pi, interchange_pi, toggler_pi, sticky_pi, add_plugins_vars;'
@@ -849,9 +889,10 @@ $GLOBALS['TL_DCA']['tl_co_foundation_settings'] = array
 		'grid' 						=> createCheckboxArray('grid',false),
 		'flex_grid' 				=> createCheckboxArray('flex_grid',false),
 		'forms' 					=> createCheckboxArray('forms',false),
+		'input_range' 					=> createCheckboxArray('input_range',false),
 		'visibility_classes' 		=> createCheckboxArray('visibility_classes',false),
-		'base_styles' 				=> createCheckboxArray('base_styles',false),
-		'helper_classes' 			=> createCheckboxArray('helper_classes',false),
+		//'base_styles' 				=> createCheckboxArray('base_styles',false),
+		//'helper_classes' 			=> createCheckboxArray('helper_classes',false),
 		'button' 					=> createCheckboxArray('button',false),
 		'button_group' 				=> createCheckboxArray('button_group',false),
 		'close_button' 				=> createCheckboxArray('close_button',false),
@@ -859,10 +900,12 @@ $GLOBALS['TL_DCA']['tl_co_foundation_settings'] = array
 		'switch' 					=> createCheckboxArray('switch',false),
 		'overview' 					=> createCheckboxArray('overview',false),
 		'menu' 						=> createCheckboxArray('menu',false),
+		'menu_icon' 						=> createCheckboxArray('menu_icon',false),
 		'dropdown_menu_js' 			=> createCheckboxArray('dropdown_menu_js',false),
 		'drilldown_menu_js' 		=> createCheckboxArray('drilldown_menu_js',false),
 		'accordion_menu_js' 		=> createCheckboxArray('accordion_menu_js',false),
 		'top_bar' 					=> createCheckboxArray('top_bar',false),
+		'title_bar' 					=> createCheckboxArray('top_bar',false),
 		'responsive_navigation' 	=> createCheckboxArray('responsive_navigation',false),
 		'magellan_js' 				=> createCheckboxArray('magellan_js',false),
 		'pagination' 				=> createCheckboxArray('pagination',false),
@@ -874,7 +917,7 @@ $GLOBALS['TL_DCA']['tl_co_foundation_settings'] = array
 		'offcanvas_js' 				=> createCheckboxArray('offcanvas_js',false),
 		'reveal_js' 				=> createCheckboxArray('reveal_js',false),
 		'table_fw' 					=> createCheckboxArray('table_fw',false),
-		'table_js' 					=> createCheckboxArray('table_js',false),
+		'tabs_js' 					=> createCheckboxArray('tabs_js',false),
 		'badge' 					=> createCheckboxArray('badge',false),
 		'flex_video' 				=> createCheckboxArray('flex_video',false),
 		'label' 					=> createCheckboxArray('label',false),

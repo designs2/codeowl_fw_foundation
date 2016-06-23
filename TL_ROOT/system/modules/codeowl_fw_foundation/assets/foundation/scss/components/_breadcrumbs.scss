@@ -57,7 +57,7 @@ $breadcrumbs-item-slash: true !default;
 
     @if $breadcrumbs-item-slash {
       // Need to escape the backslash
-      $slash: if($global-text-direction == 'ltr', '/', '\\');
+      $slash:  '/';
 
       &:not(:last-child)::after {
         color: $medium-gray;
