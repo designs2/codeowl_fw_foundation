@@ -31,5 +31,56 @@ $slash: if($global-text-direction == 'ltr', '/', '\\'); macht Probleme
 L60 geändert in   $slash:  '/';
 
 
+#### not ready at all !!! please recognize
+
+geht:
+grid
+typography, auch breakpoints
+accordion
+tabs
+(orbit)
+
+flex video
+youtube
+vimeo
+video ownsource
+placeholder
+
+
+
+-----------
+geht noch nicht:
+breakpoints settings
+vcard
+orbit prev and next navigation don't work, markup stimmt aber so weit
+
+clearing lightbox
+
+
+---
+template vars checken
+
+auflistungen
+pricebox
+Dropdown, Buttons und Buttonbars
+Hinweise und PopUps
+V-Card
+Blockquote
+
+
+-----------
+todos:
+
+javascript aufrufe nochmal prüfen und optimieren (tooltip)
+orbit picture captions nochmal prüfen
+orbit role="region" aria-label="Favorite Space Pictures" optimieren
+orbit bullets mit php generieren, macht das js nicht mehr
+templates an evtl neues markup anpassen
+
+dringend:
+auflistungen
+breakpoints einstellen
+
+
 
 
