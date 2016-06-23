@@ -1,21 +1,26 @@
-<ul class="orbit <?php echo $class; ?>"  data-orbit>
-  <?php foreach ($this->body as $class=>$row): ?>
-    <?php foreach ($row as $col): ?>
-      <?php if ($col->addImage): ?>
-        <li class="<?php echo $class; ?> <?php echo $col->class; ?>">  
-           <?php $this->insert('picture_orbit', $col->picture); ?>
-            <div class="orbit-caption">
-            <?php
-            if ($col->caption!==''||!$col->caption) {
-            	echo $col->alt;
-            }  else {
-            	echo $col->caption;
-            }          
-            ?>
-            
-            </div>         
-        </li>
-      <?php endif; ?>
+<div class="orbit" data-orbit>
+  <ul class="orbit-container <?php echo $class; ?>">
+  <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
+  <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
+    
+    <?php foreach ($this->body as $class=>$row): ?>
+      <?php foreach ($row as $col): ?>
+        <?php if ($col->addImage): ?>
+          <li class="orbit-slide">  
+             <?php $this->insert('picture_orbit', $col->picture); ?>
+              <figcaption class="orbit-caption">
+              <?php
+              if ($col->caption!==''||!$col->caption) {
+              	echo $col->alt;
+              }  else {
+              	echo $col->caption;
+              }          
+              ?>
+              
+              </figcaption>         
+          </li>
+        <?php endif; ?>
+      <?php endforeach; ?>
     <?php endforeach; ?>
-  <?php endforeach; ?>
-</ul>
+  </ul>
+</div>

@@ -1,10 +1,13 @@
-<div class="<?php echo $this->ftc_classes; ?> block"<?php echo $this->ftcID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?> <?php echo $this->data_attr;?>>
+<div class="<?php echo $this->ftc_classes; ?>"<?php echo $this->ftcID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?> <?php echo $this->data_attr;?>>
 
   <?php if ($this->headline): ?>
     <<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
   <?php endif; ?>
-  <ul class="orbit-content"  data-orbit>
+<div class="orbit" data-orbit>
+  <ul class="orbit-container">
 
-
+ 	<button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
+    <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
+  
 
 

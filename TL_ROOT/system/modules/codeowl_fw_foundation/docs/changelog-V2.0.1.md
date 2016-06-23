@@ -16,6 +16,8 @@ Zurbs Foundation Version 6.2.3
 active-class is now named 'is-active', not 'active'. You can set the active state into the accordion inner element with the CSS-Class field 
 ####Tabs 
 active-class is now named 'is-active', not 'active'.
+####Orbit
+navigationselemente werden nicht mehr mit javascript generiert und werden daher mit in die Templates generiert
 
 ###Improved
 

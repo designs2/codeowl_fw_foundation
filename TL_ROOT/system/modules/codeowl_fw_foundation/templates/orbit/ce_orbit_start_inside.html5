@@ -1,2 +1,2 @@
-<li data-orbit-slide="<?php echo $this->id; ?>">
+<li class="orbit-slide">
 
