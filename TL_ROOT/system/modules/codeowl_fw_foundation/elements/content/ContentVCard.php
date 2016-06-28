@@ -37,7 +37,7 @@ class ContentVCard extends \ContentElement
 		
 		global $objPage;
 
-		$items = unserialize($this->vcard);
+		$items = unserialize($this->co_fw_vcard);
 		if (!is_array($items)) {
 			return;
 		}
