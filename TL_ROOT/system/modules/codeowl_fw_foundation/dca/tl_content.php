@@ -65,12 +65,12 @@ array_insert($GLOBALS['TL_DCA']['tl_content']['palettes'], 0, array
 	'price_table'        				      => $default.'{table_legend},co_fw_price_table,co_fw_cta_href;'.$expert,
 	
 	'flex_video'        				      => $default.'{video_legend},co_fw_use_youtube,co_fw_vimeo,co_fw_own_src;'.$expert,
-	'placeholder_image'               => $default.'{placeholder_legend},co_fw_is_bw,co_fw_stamp,co_fw_topic;{image_legend},alt,title,size,co_fw_imagemargin,imageUrl,caption;'.$expert,
+	'placeholder_image'               => $default.'{placeholder_legend},co_fw_is_bw,co_fw_stamp,co_fw_topic;{image_legend},alt,title,size,imagemargin,imageUrl,caption;'.$expert,
 
   ));
   
   // `-,-´ Selector
-  array_insert($GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'] ,1,array('use_reveal','use_youtube','vimeo','own_src')); 
+  array_insert($GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'] ,1,array('co_fw_use_reveal','co_fw_use_youtube','co_fw_vimeo','co_fw_own_src')); 
   // `-,-´ Add subpalletes
   //var_dump($GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__']);
   $subpalettes = $GLOBALS['TL_DCA']['tl_content']['subpalettes'];

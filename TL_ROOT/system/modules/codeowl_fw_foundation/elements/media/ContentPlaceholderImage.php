@@ -33,7 +33,7 @@ class ContentPlaceholderImage extends \ContentElement
 		$this->href = ($this->imageUrl!=='') ? $this->imageUrl: false;
 		$this->margin = 'margin:'.$imagemargin['top'].$imagemargin['unit'].' '.$imagemargin['right'].$imagemargin['unit'].' '.$imagemargin['bottom'].$imagemargin['unit'].' '.$imagemargin['left'].$imagemargin['unit'].'; ';
 		
-		$is_bw = ($this->is_bw) ? 'g/' : '' ;
+		$is_bw = ($this->co_fw_is_bw) ? 'g/' : '' ;
 		$this->singleSRC ='http://lorempixel.com/'.$is_bw.''.$sizeStr[0].'/'.$sizeStr[1].'/'.$this->co_fw_topic.'/'.$this->co_fw_stamp.'/'; //$objFile->path;
 		return parent::generate();
 	}
