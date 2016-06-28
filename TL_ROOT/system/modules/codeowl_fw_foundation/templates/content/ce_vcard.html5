@@ -5,7 +5,7 @@
     <<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
   <?php endif; ?>
 
-  <ul class="vcard">
+  <ul class="vcard no-bullet">
     <?php
     
     if (!is_array($this->items)) {return;}

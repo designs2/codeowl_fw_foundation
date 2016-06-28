@@ -74,7 +74,7 @@ public function getNestetImports($path,$parentFileName){
 		$settingsFile   		= '_settings.scss';
 		$configContentFile 	= str_replace(' ', '-',strtolower($activeRecordRow['name'])).'.scss';
 		
-		require_once(TL_ROOT.'/system/modules/codeowl_fw_foundation/config/framework.php'); 
+		require(TL_ROOT.'/system/modules/codeowl_fw_foundation/config/framework.php'); 
 		
 		if (!file_exists($savePath)){
 			mkdir($savePath);

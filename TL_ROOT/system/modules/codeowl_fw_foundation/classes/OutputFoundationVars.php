@@ -48,7 +48,7 @@ class OutputFoundationVars extends \Controller
 					}
 					$arrFwSettingsModel = $fwSettingsModel->row();
 				
-	              	  require_once(TL_ROOT.'/system/modules/codeowl_fw_foundation/config/framework.php'); 
+	              	  require(TL_ROOT.'/system/modules/codeowl_fw_foundation/config/framework.php'); 
 					//  var_dump($fwPathToFolder,TL_ROOT,$obj->__get("layout")->__get("co_fw_add_foundation"));
 					  $arrUtils 		= array();
 					  $arrScripts 	= array();

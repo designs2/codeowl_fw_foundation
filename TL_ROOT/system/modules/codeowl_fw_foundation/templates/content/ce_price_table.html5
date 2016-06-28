@@ -3,7 +3,7 @@
   <?php if ($this->headline): ?>
     <<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
   <?php endif; ?>
-  <ul class="pricing-table">
+  <ul class="pricing-table no-bullet">
     <?php if (!is_array($this->items)) {return;}
     foreach ($this->items as $item): ?>
       <li<?php if ($item['class']): ?> class="<?php echo $item['class']; ?>"<?php endif; ?>><?php if ($item['class']=='cta-button'):?><a href="<?php echo $this->cta_href; ?>" title="<?php echo $item['content']; ?>" class="button" ><?php echo $item['content']; ?></a>
