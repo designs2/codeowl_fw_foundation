@@ -33,7 +33,7 @@ class OutputFoundationVars extends \Controller
 					// `-,-´error if jquery is not enabled in layout
 					if(!$obj->__get("layout")->__get("addJQuery")){
 						$this->log('Error! Please enable jQuery in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"), __METHOD__, TL_ERROR);
-						throw new Exception('Error! Please enable jQuery in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
+						throw new \Exception('Error! Please enable jQuery in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
 						//is backend only \Message::addError('Error! Please enable jQuery in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
 						exit;
 					}
@@ -43,7 +43,7 @@ class OutputFoundationVars extends \Controller
 					if(NULL == $fwSettingsModel){
 						// \Message::addError('Error! Please select framework setting in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
 							$this->log('Error! Please select framework setting in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"), __METHOD__, TL_ERROR);
-							throw new Exception('Error! Please select framework setting in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
+							throw new \Exception('Error! Please select framework setting in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
 						exit;
 					}
 					$arrFwSettingsModel = $fwSettingsModel->row();
