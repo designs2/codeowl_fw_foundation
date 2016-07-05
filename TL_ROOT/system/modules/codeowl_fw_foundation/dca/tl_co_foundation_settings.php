@@ -665,7 +665,7 @@ $GLOBALS['TL_DCA']['tl_co_foundation_settings'] = array
 		{modal_legend},table_fw, tabs_js, add_modal_vars;
 		{media_legend},badge, flex_video, label, orbit_js, add_media_vars;
 		{carousel_legend},progressbar, thumbnail, tooltip_js, add_carousel_vars;
-		{plugins_legend},abide_pi, equilizer_pi, interchange_pi, toggler_pi, sticky_pi, add_plugins_vars;'
+		{plugins_legend},abide_pi, equalizer_pi, interchange_pi, toggler_pi, sticky_pi, add_plugins_vars;'
 	),
 		'subpalettes' 				=> array
 	(
@@ -928,7 +928,7 @@ $GLOBALS['TL_DCA']['tl_co_foundation_settings'] = array
 
 		// `-,-´ PlugIns
 		'abide_pi' 					=> createCheckboxArray('abide_pi',false),
-		'equilizer_pi' 				=> createCheckboxArray('equilizer_pi',false),
+		'equalizer_pi' 				=> createCheckboxArray('equalizer_pi',false),
 		'interchange_pi' 			=> createCheckboxArray('interchange_pi',false),
 		'toggler_pi' 				=> createCheckboxArray('toggler_pi',false),
 		'sticky_pi' 				=> createCheckboxArray('sticky_pi',false),
