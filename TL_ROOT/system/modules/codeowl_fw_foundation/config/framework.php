@@ -81,7 +81,7 @@ $fwModulePackages 				=  array(
 											
 											// `-,-´  PlugIns
 											'abide_pi' 					=> array('','','','abide'),
-											'equilizer_pi' 				=> array('','','','equilizer'),
+											'equalizer_pi' 				=> array('','','','equalizer'),
 											'interchange_pi' 			=> array('','','','interchange',array('triggers','timerAndImageLoader')),
 											'toggler_pi' 				=> array('','','','toggler',array('motion')),
 											'sticky_pi' 					=> array('components','sticky', 'sticky', 'sticky',array('triggers','mediaQuery'))
