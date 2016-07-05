@@ -185,7 +185,7 @@ TemplateLoader::addFiles(array
 	'orbit_js' => 'system/modules/codeowl_fw_foundation/templates/js',
 	'tooltip_js' => 'system/modules/codeowl_fw_foundation/templates/js',
 	'abide_pi' => 'system/modules/codeowl_fw_foundation/templates/js',
-	'equilizer_pi' => 'system/modules/codeowl_fw_foundation/templates/js',
+	'equalizer_pi' => 'system/modules/codeowl_fw_foundation/templates/js',
 	'interchange_pi' => 'system/modules/codeowl_fw_foundation/templates/js',
 	'toggler_pi' => 'system/modules/codeowl_fw_foundation/templates/js',
 	'sticky_pi' => 'system/modules/codeowl_fw_foundation/templates/js' 
