@@ -1,26 +1,42 @@
-<div class="orbit" data-orbit>
+<div class="orbit" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;">
   <ul class="orbit-container <?php echo $class; ?>">
   <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
   <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
     
-    <?php foreach ($this->body as $class=>$row): ?>
-      <?php foreach ($row as $col): ?>
-        <?php if ($col->addImage): ?>
-          <li class="orbit-slide">  
+    <?php 
+    $arrBullets = array(); 
+    $formatActiveBullet = "<button class=\"is-active\" data-slide=\"%s\"><span class=\"show-for-sr\">%s</span><span class=\"show-for-sr\">Current Slide</span></button>";
+    $formatDefaultBullet = "<button data-slide=\"%s\"><span class=\"show-for-sr\">%s</span></button>";
+    foreach ($this->body as $i => $col): 
+
+        if ($col->caption!==''||!$col->caption){
+            $slideDescription = $col->alt;
+        }else{
+            $slideDescription = $col->caption;
+        }
+      ?>
+        <li class="orbit-slide<?php if($i == 0): echo ' is-active'; endif; ?>">  
              <?php $this->insert('picture_orbit', $col->picture); ?>
               <figcaption class="orbit-caption">
               <?php
-              if ($col->caption!==''||!$col->caption) {
-              	echo $col->alt;
-              }  else {
-              	echo $col->caption;
-              }          
+              
+              echo $slideDescription;
+              if ($i == 0) {
+                $arrBullets[] = sprintf($formatActiveBullet, $i, $slideDescription);
+              }else{
+                $arrBullets[] = sprintf($formatDefaultBullet, $i, $slideDescription);
+              }
+              
               ?>
               
               </figcaption>         
           </li>
-        <?php endif; ?>
       <?php endforeach; ?>
-    <?php endforeach; ?>
   </ul>
+  
+  <nav class="orbit-bullets">
+  <?php 
+    echo implode("\n\r", $arrBullets);
+  ?>
+</nav>
 </div>

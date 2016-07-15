@@ -75,7 +75,22 @@ class OutputFoundationVars extends \Controller
 						  }
 						  
 					  }
-				  
+				 // var_dump(array_unique($arrUtils));
+					  $arrUniqueUtils = array_unique($arrUtils);
+					  // set misc stylesheets like motion ui
+					  if (in_array('motion',$arrUniqueUtils)) {
+					  		$objCombiner 		= new \Combiner();
+							$objCombiner->add('system/modules/codeowl_fw_foundation/assets/foundation/misc/motion-ui.css');
+							$ftcMiscStyles 		= \Template::generateStyleTag($objCombiner->getCombinedFile());
+		
+
+					  		$obj->__get("layout")->__set(
+	                  			"ftcMiscStyles",
+	                 		 	$ftcMiscStyles
+					  		);
+					  }
+
+
 					  // `-,-´ Utils
 	                  $obj->__get("layout")->__set(
 	                  		"ftcLib",
@@ -83,7 +98,7 @@ class OutputFoundationVars extends \Controller
 	                 		 			$obj->__get("layout"),
 	                 		 			$fwPathToFolder,
 	                 		 			$fwModuleJsUtilsPrefix,
-	                 		 			array_unique($arrUtils)
+	                 		 			$arrUniqueUtils
 									)
 					  );
 					

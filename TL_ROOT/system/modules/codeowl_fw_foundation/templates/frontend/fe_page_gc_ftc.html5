@@ -14,6 +14,7 @@
  <?php echo $this->viewport; ?>
   <?php echo $this->framework; ?>
   <?php echo $this->stylesheets; ?>
+  <?php echo $this->layout->ftcMiscStyles; ?>
   <?php echo $this->mooScripts; ?>
 
   <?php echo $this->head; ?>

@@ -237,46 +237,15 @@ class ContentOrbit extends \ContentElement
 		$total = count($images);
 		$limit = $total;
 
-		// `-,-´ Pagination
-		if ($this->perPage > 0)
-		{
-			// `-,-´ Get the current page
-			$id = 'slide' . $this->id;
-			$page = \Input::get($id) ?: 1;
-
-			// `-,-´ Do not index or cache the page if the page number is outside the range
-			if ($page < 1 || $page > max(ceil($total/$this->perPage), 1))
-			{
-				global $objPage;
-				$objPage->noSearch = 1;
-				$objPage->cache = 0;
-
-				// `-,-´ Send a 404 header
-				header('HTTP/1.1 404 Not Found');
-				return;
-			}
-
-			// `-,-´ Set limit and offset
-			$offset = ($page - 1) * $this->perPage;
-			$limit = min($this->perPage + $offset, $total);
-
-			$objPagination = new \Pagination($total, $this->perPage, \Config::get('maxPaginationLinks'), $id);
-			$objPagination->__set('template','pagination_ftc');
-			$this->Template->pagination = $objPagination->generate("\n  ");
-		}
-
-		$rowcount = 0;
-		$colwidth = floor(100/$this->perRow);
-		$intMaxWidth = (TL_MODE == 'BE') ? floor((640 / $this->perRow)) : floor((\Config::get('maxImageWidth') / $this->perRow));
-		$strLightboxId = '';
+		$intMaxWidth = (TL_MODE == 'BE') ? 640  : \Config::get('maxImageWidth');
 		$body = array();
 
-		// `-,-´ Rows
-		for ($i=$offset; $i<$limit; $i=($i+$this->perRow))
+		// `-,-´ 
+		for ($i=$offset; $i<$limit; $i++)
 		{
 			$class_tr = '';
 
-			if ($rowcount == 0)
+			if ($i == 0)
 			{
 				$class_tr .= ' first';
 			}
@@ -286,50 +255,26 @@ class ContentOrbit extends \ContentElement
 				$class_tr .= ' last';
 			}
 
-			$class_eo = (($rowcount % 2) == 0) ? ' even' : ' odd';
-
-			// `-,-´ Columns
-			for ($j=0; $j<$this->perRow; $j++)
-			{
-				$class_td = '';
-
-				if ($j == 0)
-				{
-					$class_td = ' ';
-				}
-
-				if ($j == ($this->perRow - 1))
-				{
-					$class_td = ' ';
-				}
-
 				$objCell = new \stdClass();
-				$key = 'row_' . $rowcount . $class_tr . $class_eo;
+				
 
 				// `-,-´ Empty cell
-				if (!is_array($images[($i+$j)]) || ($j+$i) >= $limit)
+				if (!is_array($images[$i]) || ($i) >= $limit)
 				{
-					$objCell->colWidth = $colwidth . '%';
-					$objCell->class = ' ';
+					$objCell->class = ' '.$class_tr;
 				}
 				else
 				{
-					// `-,-´ Add size and margin
-					$images[($i+$j)]['size'] = $this->size;
-					$images[($i+$j)]['imagemargin'] = $this->imagemargin;
-					$images[($i+$j)]['fullsize'] = $this->fullsize;
-					//$prepareImages = new \;
-					$this->addImageToTemplateFTC($objCell, $images[($i+$j)], $intMaxWidth, $strLightboxId);
+					// `-,-´ Add size 
+					$images[$i]['size'] 		= $this->size;
+					$this->addImageToTemplateFTC($objCell, $images[$i], $intMaxWidth);
 
 					// `-,-´ Add column width and class
-					$objCell->colWidth = $colwidth . '%';
-					$objCell->class = ' ';
+					$objCell->class = ' '.$class_tr;
 				}
 
-				$body[$key][$j] = $objCell;
-			}
-
-			++$rowcount;
+				$body[$i] = $objCell;
+		
 		}
 
 		$strTemplate = 'orbit_list';
@@ -361,9 +306,8 @@ class ContentOrbit extends \ContentElement
 	 * @param object  $objTemplate   The template object to add the image to
 	 * @param array   $arrItem       The element or module as array
 	 * @param integer $intMaxWidth   An optional maximum width of the image
-	 * @param string  $strLightboxId An optional lightbox ID
 	 */
-	public static function addImageToTemplateFTC($objTemplate, $arrItem, $intMaxWidth=null, $strLightboxId=null)
+	public static function addImageToTemplateFTC($objTemplate, $arrItem, $intMaxWidth=null)
 	{
 		global $objPage;
 		try
@@ -381,7 +325,6 @@ class ContentOrbit extends \ContentElement
 		{
 			$intMaxWidth = (TL_MODE == 'BE') ? 320 : \Config::get('maxImageWidth');
 		}
-		$arrMargin = (TL_MODE == 'BE') ? array() : deserialize($arrItem['imagemargin']);
 		// Store the original dimensions
 		$objTemplate->width = $imgSize[0];
 		$objTemplate->height = $imgSize[1];
@@ -389,20 +332,6 @@ class ContentOrbit extends \ContentElement
 		if ($intMaxWidth > 0)
 		{
 			// Subtract the margins before deciding whether to resize (see #6018)
-			if (is_array($arrMargin) && $arrMargin['unit'] == 'px')
-			{
-				$intMargin = $arrMargin['left'] + $arrMargin['right'];
-				// Reset the margin if it exceeds the maximum width (see #7245)
-				if ($intMaxWidth - $intMargin < 1)
-				{
-					$arrMargin['left'] = '';
-					$arrMargin['right'] = '';
-				}
-				else
-				{
-					$intMaxWidth = $intMaxWidth - $intMargin;
-				}
-			}
 			if ($size[0] > $intMaxWidth || (!$size[0] && !$size[1] && $imgSize[0] > $intMaxWidth))
 			{
 				// See #2268 (thanks to Thyon)
@@ -439,31 +368,12 @@ class ContentOrbit extends \ContentElement
 		
 		$objTemplate->picture = $picture;
 
-		// Float image
-		if ($arrItem['floating'] != '')
-		{
-			$objTemplate->floatClass = ' float_' . $arrItem['floating'];
-		}
-		// Do not override the "href" key (see #6468)
-		$strHrefKey = ($objTemplate->href != '') ? 'imageHref' : 'href';
-		
-		// Fullsize view
-		if (TL_MODE == 'FE')
-		{
-			$objTemplate->$strHrefKey = TL_FILES_URL . \System::urlEncode($arrItem['singleSRC']);
-			$objTemplate->attributes = ' data-caption="'.$arrItem['caption'].'"';
-		}
 		// Do not urlEncode() here because getImage() already does (see #3817)
 		$objTemplate->src = TL_FILES_URL . $src;
 		$objTemplate->alt = specialchars($arrItem['alt']);
 		$objTemplate->title = specialchars($arrItem['title']);
-		$objTemplate->linkTitle = $objTemplate->title;
-		$objTemplate->fullsize = $arrItem['fullsize'] ? true : false;
-		$objTemplate->addBefore = ($arrItem['floating'] != 'below');
-		$objTemplate->margin = static::generateMargin($arrMargin);
 		$objTemplate->caption = $arrItem['caption'];
 		$objTemplate->singleSRC = $arrItem['singleSRC'];
-		$objTemplate->addImage = true;
 	}
 		
 }
