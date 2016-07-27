@@ -33,9 +33,9 @@ class OutputFoundationVars extends \Controller
 					// `-,-´error if jquery is not enabled in layout
 					if(!$obj->__get("layout")->__get("addJQuery")){
 						$this->log('Error! Please enable jQuery in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"), __METHOD__, TL_ERROR);
-						throw new \Exception('Error! Please enable jQuery in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
+						//throw new \Exception('Error! Please enable jQuery in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
 						//is backend only \Message::addError('Error! Please enable jQuery in this layout, named:'.$obj->__get("layout")->__get("title").', id:'.$obj->__get("layout")->__get("id"));
-						exit;
+						//exit;
 					}
 					$fwSettingsModel = FoundationSettingsModel::findByPk($obj->__get("layout")->__get("co_fw_setting"));
 					
@@ -52,7 +52,7 @@ class OutputFoundationVars extends \Controller
 					//  var_dump($fwPathToFolder,TL_ROOT,$obj->__get("layout")->__get("co_fw_add_foundation"));
 					  $arrUtils 		= array();
 					  $arrScripts 	= array();
-					  $arrScripts['core']		= 'core';
+					  //$arrScripts['core']		= 'core';
 					  foreach ($fwModulePackages as $name => $settings) {
 					   		
 					  	if(
@@ -94,18 +94,21 @@ class OutputFoundationVars extends \Controller
 					  // `-,-´ Utils
 	                  $obj->__get("layout")->__set(
 	                  		"ftcLib",
-	                 		 $this->getLibStr(
-	                 		 			$obj->__get("layout"),
-	                 		 			$fwPathToFolder,
-	                 		 			$fwModuleJsUtilsPrefix,
-	                 		 			$arrUniqueUtils
-									)
+	                 		 ''
 					  );
 					
 					  // `-,-´ framework scripts
+					  
+					  $libScript 		= $this->getLibStr(
+			                 		 			$obj->__get("layout"),
+			                 		 			$fwPathToFolder,
+			                 		 			$fwModuleJsUtilsPrefix,
+			                 		 			$arrUniqueUtils
+												);
 	                  $obj->__get("layout")->__set(
 	                  		"ftcJS",
 	                  		$this->getScriptStr(
+	                  					$libScript,
 	                  					$obj->layout,
 	                  					$fwPathToFolder,
 	                 		 			$fwModuleJsPrefix,
@@ -150,35 +153,59 @@ class OutputFoundationVars extends \Controller
   public function getLibStr($objLayout,$fwPathToFolder,$fwModuleJsUtilsPrefix,$arrUtils){
         	
   		global $objPage;
+  		$arrUtilsSorted		= array('mediaQuery'
+									,'keyboard'
+									,'motion'
+									,'nest'
+									,'box'
+									,'triggers'
+									,'timerAndImageLoader'
+									,'touch');
+
 		$parsedTemplates 	= array();
 		//get layouts fw setting, get row, iteriere all fields with _js and _pi if checked, look into packages array for js-file and required utils
 		$objCombiner 		= new \Combiner();
-		foreach ($arrUtils as $name => $path) {
+		//var_dump($arrUtils);
+		foreach ($arrUtilsSorted as $name) {
 			//$fwPathToFolder.
-			$objCombiner->add('system/modules/codeowl_fw_foundation/assets/foundation/js/'.$fwModuleJsUtilsPrefix.$path.".js");
+			if(!in_array($name,$arrUtils)){continue;}
+			$objCombiner->add('system/modules/codeowl_fw_foundation/assets/foundation/js/'.$fwModuleJsUtilsPrefix.$name.".js");
 			//$template =  new \FrontendTemplate($path);
 			//$parsedTemplates[] 	= $template->parse();
 		}
-		return "\r\n" . \Template::generateScriptTag($objCombiner->getCombinedFile());
+		
+		return $objCombiner->getCombinedFile();//"\r\n" . \Template::generateScriptTag($objCombiner->getCombinedFile());
 				// . "\r\n"	. \Template::generateInlineScript(implode("\r\n\t",$parsedTemplates));
 
   }  
 
-  // `-,-´ Returns foundation scripts for layout
-  public function getScriptStr($objLayout,$fwPathToFolder,$fwModuleJsPrefix,$arrScripts){
+  // `-,-´ Returns foundation scripts for layout 
+  public function getScriptStr($libScript,$objLayout,$fwPathToFolder,$fwModuleJsPrefix,$arrScripts){
         global $objPage;
 		$parsedTemplates 	= array();
 		//get layouts fw setting, get row, iteriere all fields with _js and _pi if checked, look into packages array for js-file and required utils
 		$objCombiner 		= new \Combiner();
-		foreach ($arrScripts as $name => $path) {
+		$name = 'co_fw_core';
+		$objCombiner2 		= new \Combiner();
+		$objCombiner2->add('system/modules/codeowl_fw_foundation/assets/foundation/js/'.$fwModuleJsPrefix."core.js");
+		$objCombiner2->add($libScript);
+		$objCombiner->add($objCombiner2->getCombinedFile());
+		
+		$template 			=  new \FrontendTemplate($name);
+		$parsedTemplates[] 	= $template->parse();
+		asort($arrScripts);
+
+		foreach ($arrScripts as $name => $path) {		
+			
 			$objCombiner->add('system/modules/codeowl_fw_foundation/assets/foundation/js/'.$fwModuleJsPrefix.$path.".js");
-			if($path == 'core'){
-				$name = 'co_fw_core';	
-			}
-				$template 					=  new \FrontendTemplate($name);
-				$parsedTemplates[] 	= $template->parse();
+			$template 			=  new \FrontendTemplate($name);
+			$parsedTemplates[] 	= $template->parse();
 			
 		}
+		
+		//add all to debug
+		//$objCombiner->add('system/modules/codeowl_fw_foundation/assets/foundation/js/foundation.js');
+			
 		$scriptTemplates = implode("\r\n\t",$parsedTemplates);
 		//var_dump(\Template::generateInlineScript(implode("\r\n\t",$parsedTemplates)),$objCombiner->getCombinedFile(),\Template::generateScriptTag($objCombiner->getCombinedFile()));
 		
